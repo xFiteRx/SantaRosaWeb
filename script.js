@@ -1,22 +1,57 @@
-// Esperamos a que la página cargue por completo para activar las funciones
-document.getElementById('btn-ingresar').addEventListener('click', function() {
-    
-    // 1. Capturamos el rol que el usuario seleccionó en la lista
-    const rolSeleccionado = document.getElementById('selector-rol').value;
+// Deshabilitar Clic Derecho
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+}, false);
 
-    // 2. Buscamos todos los paneles de la pantalla y los ocultamos
-    const todosLosPaneles = document.querySelectorAll('.panel');
-    todosLosPaneles.forEach(function(panel) {
-        panel.style.display = 'none';
-    });
+// Deshabilitar atajos de teclado de copia e inspección
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+});
 
-    // 3. Si seleccionó un rol, construimos el ID del panel correspondiente y lo mostramos
-    if (rolSeleccionado !== "") {
-        const panelAMostrar = document.getElementById('panel-' + rolSeleccionado);
-        if (panelAMostrar) {
-            panelAMostrar.style.display = 'block';
-        }
-    } else {
-        alert("Por favor, selecciona un rol de la lista para ingresar.");
+// CARRUSEL DE IMÁGENES (SLIDER)
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+setInterval(() => {
+    if(slides.length > 0) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
     }
+}, 5000);
+
+// REPRODUCTOR DE PLAYLIST (Nombre de función limpiado y sanitizado de UCV)
+function cambiarVideoSeccion(elemento, idVideo) {
+    document.querySelectorAll('.playlist-video-item').forEach(item => item.classList.remove('playing-now'));
+    elemento.classList.add('playing-now');
+    document.getElementById('video-main-player').src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
+}
+
+// ANIMACIÓN CONTADOR
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.elementor-counter-number');
+    counters.forEach(counter => {
+        const toValue = parseInt(counter.getAttribute('data-to-value'));
+        const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+        let startTime = null;
+
+        const animateCounter = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const currentCount = Math.min(Math.floor((progress / duration) * toValue), toValue);
+            
+            counter.textContent = currentCount;
+
+            if (progress < duration) {
+                requestAnimationFrame(animateCounter);
+            } else {
+                counter.textContent = toValue;
+            }
+        };
+        requestAnimationFrame(animateCounter);
+    });
 });
