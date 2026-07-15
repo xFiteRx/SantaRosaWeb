@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos - I.E. Santa Rosa de Santo Domingo</title>
+    <style>
+        /* ===================================================
+           1. ESTILOS GLOBALES, RESETEO Y SEGURIDAD CRÍTICA
+           =================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /* Protección total: Bloquea selección de texto y arrastre */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #fff5f6; /* Fondo con un matiz sutil rosado muy limpio */
+            color: #1e293b; /* Texto pizarra oscuro para alta legibilidad */
+            line-height: 1.6;
+        }
+        .contenedor-principal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ===================================================
+           2. BARRA DE NAVEGACIÓN (IDENTIDAD SANTA ROSA)
+           =================================================== */
+        header {
+            background-color: #002244; /* Azul oscuro formal del escudo */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-bottom: 4px solid #ffb6c1; /* Línea de acento en Rosado Bebé */
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+        .brand-logo {
+            width: 45px;  
+            height: 45px;
+            object-fit: contain;
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: #ffb6c1; /* Rosado Bebé */
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Menú de Navegación Simple */
+        .menu-simple {
+            list-style: none;
+            display: flex;
+        }
+        .menu-simple li a {
+            color: #ffb6c1; 
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-bottom: 2px solid #ffb6c1; 
+            letter-spacing: 0.5px;
+        }
+
+        /* ===================================================
+           3. SECCIÓN HERO CON DEGRADADO TRANSPARENTE LUMINOSO
+           =================================================== */
+        .documentos-hero {
+            /* Como la carpeta IMG está en la raíz, salimos con ../ para hallarla */
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.85) 0%, rgba(255, 182, 193, 0.75) 100%), url('../IMG/FRONTIS.jpg') center/cover no-repeat;
+            color: #002244; 
+            padding: 60px 40px;
+            text-align: left;
+            border-radius: 12px;
+            margin: 20px 0 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255, 182, 193, 0.4);
+        }
+        .documentos-hero h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 6px; 
+            font-weight: 800; 
+        }
+        .documentos-hero .decoracion-linea {
+            width: 50px;
+            height: 5px;
+            background-color: #0055ff; 
+            margin-bottom: 15px;
+            border-radius: 2px;
+        }
+        .documentos-hero p { 
+            font-size: 1.05rem; 
+            color: #334155; 
+            font-weight: 500; 
+        }
+        
+        /* ===================================================
+           4. BUSCADOR INTERACTIVO
+           =================================================== */
+        .buscador-contenedor {
+            max-width: 360px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .buscador-input {
+            width: 100%;
+            padding: 11px 16px 11px 40px;
+            font-size: 0.95rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            color: #1e293b;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+            transition: all 0.2s ease;
+        }
+        .buscador-input:focus {
+            border-color: #0055ff;
+            box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.15);
+        }
+        .buscador-icono {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        /* ===================================================
+           5. TABLA DE DOCUMENTOS ESTILIZADA
+           =================================================== */
+        .tabla-bloque {
+            background-color: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f0e2e4;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .tabla-responsiva {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th {
+            background-color: #7A1C3D; 
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 18px 24px;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 18px 24px;
+            font-size: 0.95rem;
+            color: #334155;
+            border-bottom: 1px solid #f8fafc;
+            vertical-align: middle;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover {
+            background-color: #fff9fa;
+        }
+        
+        .col-documento { font-weight: 600; color: #1e293b; }
+        .col-descripcion { color: #64748b; }
+        .col-tipo { font-weight: 500; color: #475569; }
+        .col-accion { text-align: center; }
+
+        .btn-ver {
+            display: inline-block;
+            text-decoration: none;
+            color: #002244;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 6px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .btn-ver:hover {
+            background-color: #fff0f2;
+            border-color: #ffb6c1;
+            color: #0055ff;
+        }
+
+        /* Ajustes Móviles */
+        @media (max-width: 768px) {
+            .documentos-hero h1 { font-size: 2rem; }
+            th, td { padding: 12px 16px; }
+            .documentos-hero { padding: 40px 20px; }
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+    <header>
+        <div class="nav-container">
+            <a href="../index.html" class="brand-link" title="Ir al Portal Principal">
+                <img src="../IMG/Logo.png" alt="Logo I.E. Santa Rosa" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">I.E. Santa Rosa</span>
+                    <span class="brand-subtitle">Santo Domingo - Huarmey</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="menu-simple">
+                    <li><a href="documentos.html">Documentos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <div class="documentos-hero">
+            <h1>Documentos</h1>
+            <div class="decoracion-linea"></div>
+            <p>Formatos, comunicados, reglamentos y documentos escolares.</p>
+        </div>
+
+        <div class="buscador-contenedor">
+            <svg class="buscador-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" id="searchInput" class="buscador-input" placeholder="Buscar documento...">
+        </div>
+
+        <div class="tabla-bloque">
+            <div class="tabla-responsiva">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 40%;">Documento</th>
+                            <th style="width: 40%;">Descripción</th>
+                            <th style="width: 10%;">Tipo</th>
+                            <th style="width: 10%; text-align: center;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="documentTableBody">
+                        <tr>
+                            <td class="col-documento">FUT</td>
+                            <td class="col-descripcion">Formulario Único de Trámite</td>
+                            <td class="col-tipo">PDF</td>
+                            <td class="col-accion">
+                                <a href="../DOCUMENTOS/FUT.pdf" target="_blank" class="btn-ver">Ver</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-documento">Reglamento de elecciones escolares</td>
+                            <td class="col-descripcion">Reglas sobre el proceso de elecciones tanto como candidatos o electores.</td>
+                            <td class="col-tipo">PDF</td>
+                            <td class="col-accion">
+                                <a href="../DOCUMENTOS/Reglamento_Elecciones.pdf" target="_blank" class="btn-ver">Ver</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-documento">Cronograma institucional</td>
+                            <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
+                            <td class="col-tipo">PDF</td>
+                            <td class="col-accion">
+                                <a href="../DOCUMENTOS/Cronograma_2026.pdf" target="_blank" class="btn-ver">Ver</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || 
+               (e.ctrlKey && e.keyCode == 85)) { 
+                return false;
+            }
+        };
+
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('#documentTableBody tr');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+
+            tableRows.forEach(row => {
+                const docName = row.children[0].textContent.toLowerCase();
+                const docDesc = row.children[1].textContent.toLowerCase();
+
+                if (docName.includes(searchTerm) || docDesc.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
