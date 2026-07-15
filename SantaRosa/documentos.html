@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos - I.E. Santa Rosa de Santo Domingo</title>
+    <link rel="stylesheet" href="paginas-internas.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-contenedor">
+            <div class="logo-zona">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisb8uP7O3S7ZgA3Uj6_vI2V7k2k4P_GgD5gY_A1uB4oZ/s1600/logo-colegio.png" alt="Logo" class="logo-img">
+                <div class="logo-texto">
+                    <h1>I.E. SANTA ROSA</h1>
+                    <p>Santo Domingo</p>
+                </div>
+            </div>
+            <a href="index.html" class="btn-volver">Volver al Inicio</a>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        
+        <div class="buscador-contenedor">
+            <input type="text" id="searchInput" class="buscador-input" placeholder="🔍 Buscar documentos por título o palabra clave...">
+        </div>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-documentos">
+                <thead>
+                    <tr>
+                        <th>Nombre del Documento</th>
+                        <th>Descripción</th>
+                        <th>Tipo</th>
+                        <th style="text-align: center;">Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="documentTableBody">
+                    <tr>
+                        <td class="col-nombre">Reglamento Interno (RI) - 2026</td>
+                        <td class="col-descripcion">Normas de convivencia, deberes y derechos de la comunidad educativa.</td>
+                        <td class="col-tipo">PDF</td>
+                        <td class="col-accion">
+                            <a href="../DOCUMENTOS/Reglamento_Interno_2026.pdf" target="_blank" class="btn-ver">Ver</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-nombre">Proyecto Educativo Institucional (PEI)</td>
+                        <td class="col-descripcion">Instrumento de gestión de mediano plazo que orienta los procesos pedagógicos.</td>
+                        <td class="col-tipo">PDF</td>
+                        <td class="col-accion">
+                            <a href="../DOCUMENTOS/PEI_SantaRosa.pdf" target="_blank" class="btn-ver">Ver</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-nombre">Cronograma Anual de Actividades</td>
+                        <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
+                        <td class="col-tipo">PDF</td>
+                        <td class="col-accion">
+                            <a href="../DOCUMENTOS/Cronograma_2026.pdf" target="_blank" class="btn-ver">Ver</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <script src="paginas-internas.js"></script>
+</body>
+</html>
