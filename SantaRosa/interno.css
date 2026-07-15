@@ -1,10 +1,20 @@
 /* ===================================================
-   1. ESTILOS GLOBALES, RESETEO Y SEGURIDAD CRÍTICA
+   1. RESETEO Y VARIABLES GLOBALES
    =================================================== */
+:root {
+    --rosa-principal: #e56b6f;
+    --rosa-suave: #fff0f2;
+    --rosa-borde: #ffb7c5;
+    --oscuro-header: #111111;
+    --oscuro-texto: #1e293b;
+    --blanco: #ffffff;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* Protección: Evita que se seleccione o arrastre el texto y las imágenes */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -13,31 +23,32 @@
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: #fff5f6; /* Fondo sutil con matiz rosado muy limpio */
-    color: #1e293b; /* Texto pizarra oscuro para alta legibilidad */
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #fff5f6; /* Fondo con un matiz rosado muy limpio */
+    color: var(--oscuro-texto);
     line-height: 1.6;
 }
 
 .contenedor-principal {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
+    animation: fadeIn 0.6s ease-out;
 }
 
 /* ===================================================
-   2. BARRA DE NAVEGACIÓN (ESTILO UNIFICADO NEGRO + ROSA)
+   2. BARRA DE NAVEGACIÓN UNIFICADA
    =================================================== */
 header {
-    background-color: #111111; /* Negro profundo elegante */
+    background-color: var(--oscuro-header);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border-bottom: 3px solid #ff6b8b; /* Línea de acento rosada */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-bottom: 3px solid var(--rosa-principal);
 }
 
-.nav-contenedor {
+.header-contenedor {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -46,338 +57,84 @@ header {
     padding: 15px 20px;
 }
 
-.logo-zona {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo-img {
-    height: 48px;
-    width: auto;
-}
-
-.logo-texto h1 {
-    color: #ffffff;
-    font-size: 1.15rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-}
-
-.logo-texto p {
-    color: #ff6b8b;
-    font-size: 0.7rem;
-    text-transform: uppercase;
+.logo a {
+    color: var(--blanco);
+    font-size: 1.3rem;
     font-weight: 700;
-}
-
-.btn-volver {
-    background-color: #ff6b8b;
-    color: #ffffff;
     text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(255, 107, 139, 0.3);
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
 }
 
-.btn-volver:hover {
-    background-color: #e04d6d;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 107, 139, 0.4);
+.logo a:hover {
+    color: var(--rosa-principal);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--blanco);
+    background-color: var(--rosa-principal);
 }
 
 /* ===================================================
-   3. BLOQUES COMUNES DE CONTENIDO (SOBRE NOSOTROS / UBICACIÓN)
+   3. ESTILOS DE BLOQUES DE CONTENIDO (Tarjetas/Secciones)
    =================================================== */
 .nosotros-bloque {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 30px;
+    background: var(--blanco);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
     margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(255, 107, 139, 0.1);
+    border-left: 5px solid var(--rosa-principal);
 }
 
 .nosotros-bloque h2 {
     color: #0f172a;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     margin-bottom: 20px;
-    border-left: 5px solid #ff6b8b;
-    padding-left: 15px;
-}
-
-.historia-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-    .historia-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.historia-tarjeta {
-    background: #fff9fa;
-    border: 1px solid #ffe3e7;
-    border-radius: 12px;
-    padding: 20px;
-}
-
-.historia-tarjeta strong {
-    display: block;
-    color: #e04d6d;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-.lista-estilizada {
-    list-style: none;
-}
-
-.lista-estilizada li {
-    padding: 12px 15px;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.lista-estilizada li:last-child {
-    border-bottom: none;
-}
-
-/* Tablas estilizadas (Ubicación e Información) */
-.tabla-info {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    background: #ffffff;
-}
-
-.tabla-info td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.tabla-info tr:hover {
-    background-color: #fff9fa;
-}
-
-.mapa-incrustado {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 3px solid #ff6b8b;
-    margin-top: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.mapa-incrustado iframe {
-    width: 100%;
-    height: 450px;
-    border: 0;
-}
-
-/* ===================================================
-   4. SECCIÓN PLATAFORMAS (PRIMARIA / SECUNDARIA)
-   =================================================== */
-.plataformas-seccion {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 30px;
-    margin-top: 30px;
-    border: 1px solid rgba(255, 107, 139, 0.1);
-}
-
-.plataformas-seccion h2 {
-    color: #0f172a;
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-    border-left: 5px solid #ff6b8b;
-    padding-left: 15px;
-}
-
-.plataformas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.plataforma-card {
-    background: #ffffff;
-    border: 1px solid #f1f5f9;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.plataforma-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(255, 107, 139, 0.15);
-    border-color: #ff6b8b;
-}
-
-.plataforma-portada {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.plataforma-info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.plataforma-info h3 {
-    font-size: 1.2rem;
-    color: #0f172a;
-    margin-bottom: 10px;
-}
-
-.plataforma-info p {
-    font-size: 0.9rem;
-    color: #64748b;
-    margin-bottom: 15px;
-    flex-grow: 1;
-}
-
-.plataforma-btn {
-    display: block;
-    width: 100%;
-    background-color: #002244;
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    transition: background-color 0.2s;
-}
-
-.plataforma-btn:hover {
-    background-color: #ff6b8b;
-}
-
-/* Formularios de Juegos (Selector de Grado y Sección) */
-.juego-formulario {
-    background-color: #fff9fa;
-    border: 1px solid #ffe3e7;
-    border-radius: 12px;
-    padding: 15px;
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.input-grupo {
-    display: flex;
-    gap: 10px;
-}
-
-.selector-aula {
-    flex: 1;
-    padding: 8px;
-    border: 1.5px solid #ffccd5;
-    border-radius: 6px;
-    background-color: #ffffff;
-    font-size: 0.85rem;
-    color: #1e293b;
-    outline: none;
-    cursor: pointer;
-}
-
-.selector-aula:focus {
-    border-color: #ff6b8b;
-}
-
-/* ===================================================
-   5. SECCIÓN DOCUMENTOS (TABLA DE BUSQUEDA)
-   =================================================== */
-.buscador-contenedor {
-    margin-bottom: 25px;
-}
-
-.buscador-input {
-    width: 100%;
-    padding: 14px 20px;
-    border: 2px solid #ffccd5;
-    border-radius: 12px;
-    font-size: 1rem;
-    outline: none;
-    color: #1e293b;
-    background-color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-    transition: all 0.3s;
-}
-
-.buscador-input:focus {
-    border-color: #ff6b8b;
-    box-shadow: 0 4px 15px rgba(255, 107, 139, 0.15);
-}
-
-.tabla-contenedor {
-    background-color: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-    border: 1px solid rgba(255, 107, 139, 0.1);
-}
-
-.tabla-documentos {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-}
-
-.tabla-documentos th {
-    background-color: #002244;
-    color: #ffffff;
-    padding: 16px 20px;
     font-weight: 600;
-    font-size: 0.95rem;
 }
 
-.tabla-documentos td {
-    padding: 16px 20px;
-    border-bottom: 1px solid #f1f5f9;
-    font-size: 0.9rem;
-    color: #334155;
+p {
+    margin-bottom: 15px;
+    color: #475569;
 }
 
-.tabla-documentos tr:last-child td {
-    border-bottom: none;
+/* Tablas estilizadas (para Ubicación y Documentos) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
 }
 
-.tabla-documentos tr:hover {
-    background-color: #fff9fa;
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.col-nombre { font-weight: 600; width: 35%; }
-.col-descripcion { color: #64748b; width: 45%; }
-.col-tipo { font-weight: bold; color: #ff6b8b; width: 10%; }
-.col-accion { text-align: center; width: 10%; }
-
-.btn-ver {
-    display: inline-block;
-    background-color: #002244;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 6px 15px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    transition: background-color 0.2s;
+th {
+    background-color: var(--rosa-suave);
+    color: #0f172a;
 }
 
-.btn-ver:hover {
-    background-color: #ff6b8b;
+/* Animación de entrada suave */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
