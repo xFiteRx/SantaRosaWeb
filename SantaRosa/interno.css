@@ -1,140 +1,94 @@
 /* ===================================================
-   1. RESETEO Y VARIABLES GLOBALES
-   =================================================== */
-:root {
-    --rosa-principal: #e56b6f;
-    --rosa-suave: #fff0f2;
-    --rosa-borde: #ffb7c5;
-    --oscuro-header: #111111;
-    --oscuro-texto: #1e293b;
-    --blanco: #ffffff;
-}
+           1. ESTILOS GLOBALES, RESETEO Y SEGURIDAD CRÍTICA
+           =================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /* Protección total: Bloquea selección de texto y arrastre */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #fff5f6; /* Fondo con un matiz sutil rosado muy limpio */
+            color: #1e293b; /* Texto pizarra oscuro para alta legibilidad */
+            line-height: 1.6;
+        }
+        .contenedor-principal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    /* Protección: Evita que se seleccione o arrastre el texto y las imágenes */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-user-drag: none;
-}
+        /* ===================================================
+           2. BARRA DE NAVEGACIÓN (IDENTIDAD SANTA ROSA)
+           =================================================== */
+        header {
+            background-color: #002244; /* Azul oscuro institucional */
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
 
-body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: #fff5f6; /* Fondo con un matiz rosado muy limpio */
-    color: var(--oscuro-texto);
-    line-height: 1.6;
-}
+        /* Estilos adicionales de maquetación de tu tabla y buscador... */
+        .search-container {
+            margin: 30px 0;
+            display: flex;
+            gap: 10px;
+        }
 
-.contenedor-principal {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    animation: fadeIn 0.6s ease-out;
-}
+        .search-input {
+            flex-grow: 1;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #ffb7c5;
+            outline: none;
+            font-size: 1rem;
+        }
 
-/* ===================================================
-   2. BARRA DE NAVEGACIÓN UNIFICADA
-   =================================================== */
-header {
-    background-color: var(--oscuro-header);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-bottom: 3px solid var(--rosa-principal);
-}
+        .tabla-documentos {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
 
-.header-contenedor {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-}
+        .tabla-documentos th, .tabla-documentos td {
+            padding: 15px 20px;
+            text-align: left;
+        }
 
-.logo a {
-    color: var(--blanco);
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: color 0.3s;
-}
+        .tabla-documentos th {
+            background-color: #e56b6f;
+            color: white;
+        }
 
-.logo a:hover {
-    color: var(--rosa-principal);
-}
+        .tabla-documentos tr:nth-child(even) {
+            background-color: #fff0f2;
+        }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-}
+        .btn-ver {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #e56b6f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
 
-nav ul li a {
-    color: #cbd5e1;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: var(--blanco);
-    background-color: var(--rosa-principal);
-}
-
-/* ===================================================
-   3. ESTILOS DE BLOQUES DE CONTENIDO (Tarjetas/Secciones)
-   =================================================== */
-.nosotros-bloque {
-    background: var(--blanco);
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-    margin-bottom: 30px;
-    border-left: 5px solid var(--rosa-principal);
-}
-
-.nosotros-bloque h2 {
-    color: #0f172a;
-    font-size: 1.7rem;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-p {
-    margin-bottom: 15px;
-    color: #475569;
-}
-
-/* Tablas estilizadas (para Ubicación y Documentos) */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-th {
-    background-color: var(--rosa-suave);
-    color: #0f172a;
-}
-
-/* Animación de entrada suave */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        .btn-ver:hover {
+            background-color: #d85a5e;
+        }
