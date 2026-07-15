@@ -9,155 +9,80 @@
 </head>
 <body>
 
-    <div class="top-info-bar">
-        <div class="top-info-item">
-            <i class="fa-solid fa-location-dot"></i>
-            <span>Santo Domingo, Morropón - Piura</span>
-        </div>
-        <div class="top-info-item">
-            <i class="fa-solid fa-envelope"></i>
-            <span>contacto@iesantarosa.edu.pe</span>
-        </div>
-        <div class="top-social-links">
-            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        </div>
-    </div>
-
-    <nav class="main-navbar">
-        <a href="index.html" class="navbar-brand">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisb8uP7O3S7ZgA3Uj6_vI2V7k2k4P_GgD5gY_A1uB4oZ/s1600/logo-colegio.png" alt="Logo Colegio">
-            <div class="brand-text">
-                <h2>I.E. SANTA ROSA</h2>
-                <p>Santo Domingo</p>
-            </div>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=150" alt="Logo Santa Rosa" class="logo-img">
+            <div class="logo-texto">Santa Rosa</div>
         </a>
 
-        <ul class="nav-menu">
-            <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Inicio</a></li>
-            
-            <li>
-                <a href="#"><i class="fa-solid fa-graduation-cap"></i> Académico</a>
-                <ul class="dropdown-menu">
-                    <li><a href="SantaRosa/primaria.html">Primaria</a></li>
-                    <li><a href="SantaRosa/secundaria.html">Secundaria</a></li>
-                </ul>
-            </li>
-
-            <li><a href="SantaRosa/nosotros.html"><i class="fa-solid fa-circle-info"></i> Nosotros</a></li>
-            
+        <ul class="nav-links">
+            <li class="activo"><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="SantaRosa/primaria.html"><i class="fa-solid fa-graduation-cap"></i> Primaria</a></li>
+            <li><a href="SantaRosa/secundaria.html"><i class="fa-solid fa-book-open"></i> Secundaria</a></li>
             <li><a href="SantaRosa/documentos.html"><i class="fa-solid fa-folder-open"></i> Documentos</a></li>
-
             <li><a href="SantaRosa/ubicacion.html"><i class="fa-solid fa-map-location-dot"></i> Ubicación</a></li>
-
-            <li id="auth-section">
-                <a id="btn-login-modal" class="btn-admin" title="Portal de Acceso">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                </a>
-            </li>
+            <li><a href="SantaRosa/nosotros.html"><i class="fa-solid fa-circle-info"></i> Nosotros</a></li>
         </ul>
-    </nav>
 
-    <header class="hero-section">
-        <div class="hero-bg-slider">
-            <div class="slide active" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4t9Vz6WpZ8A-T3e1k6zQ1B_p_f8W3wO_q_gP/s1600/banner1.jpg');"></div>
-            <div class="slide" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5t9Vz7WpZ8A-T3e2k6zQ2B_p_f8W4wO_q_gP/s1600/banner2.jpg');"></div>
-        </div>
-
-        <div class="hero-counters-overlay">
-            <div class="elementor-counter">
-                <div class="icon-box-3d bg-student-3d">
-                    <i class="fa-solid fa-user-graduate"></i>
-                </div>
-                <div class="elementor-counter-title">Estudiantes</div>
-                <div class="elementor-counter-number-wrapper">
-                    <span class="num-student">895</span>
-                </div>
-            </div>
-
-            <div class="elementor-counter">
-                <div class="icon-box-3d bg-teacher-3d">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                </div>
-                <div class="elementor-counter-title">Docentes</div>
-                <div class="elementor-counter-number-wrapper">
-                    <span class="num-teacher">50</span>
-                </div>
-            </div>
+        <div class="auth-section" id="auth-navbar-section">
+            <a id="btn-login-modal" class="btn-admin" title="Portal de Acceso">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
         </div>
     </header>
 
-    <div id="admin-floating-panel" class="admin-floating-card hidden">
-        <h3><i class="fa-solid fa-gears"></i> Panel de Soporte TI</h3>
-        <p>Herramientas de configuración global de la web institucional.</p>
-        <button class="btn-admin-action"><i class="fa-solid fa-user-plus"></i> Registrar Usuario</button>
-        <button class="btn-admin-action"><i class="fa-solid fa-database"></i> Respaldar Base de Datos</button>
-        <button class="btn-admin-action-danger"><i class="fa-solid fa-triangle-exclamation"></i> Modo Mantenimiento</button>
-    </div>
+    <section class="hero">
+        <h1>Niveles Académicos</h1>
+        <p>Explora nuestras plataformas interactivas y herramientas de aprendizaje adaptadas para cada etapa de la educación escolar.</p>
+    </section>
 
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span id="closeModal" class="close">&times;</span>
-            
-            <div id="role-selection-view">
-                <h2 class="modal-title">Portal de Acceso</h2>
-                <p class="modal-subtitle">Selecciona tu rol para ingresar a la plataforma</p>
-                
-                <div class="roles-grid">
-                    <div class="role-card-3d" data-role="Estudiantes">
-                        <div class="role-icon-wrapper std-icon">
-                            <i class="fa-solid fa-user-graduate"></i>
-                        </div>
-                        <h3>Estudiante</h3>
-                        <p>Acceso a clases y juegos</p>
-                    </div>
-
-                    <div class="role-card-3d" data-role="Docentes">
-                        <div class="role-icon-wrapper tea-icon">
-                            <i class="fa-solid fa-chalkboard-user"></i>
-                        </div>
-                        <h3>Docente</h3>
-                        <p>Registro de evaluaciones</p>
-                    </div>
-
-                    <div class="role-card-3d" data-role="Directivos">
-                        <div class="role-icon-wrapper dir-icon">
-                            <i class="fa-solid fa-user-tie"></i>
-                        </div>
-                        <h3>Directivo</h3>
-                        <p>Monitoreo y estadísticas</p>
-                    </div>
-
-                    <div class="role-card-3d" data-role="Soporte TI">
-                        <div class="role-icon-wrapper ti-icon">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <h3>Soporte TI</h3>
-                        <p>Control total del sistema</p>
-                    </div>
+    <main class="academic-container">
+        
+        <div class="level-card primaria">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fa-solid fa-child"></i>
+                </div>
+                <div class="card-title-group">
+                    <span>Nivel Educativo</span>
+                    <h2>Primaria</h2>
                 </div>
             </div>
-
-            <div id="login-form-view" class="hidden">
-                <button id="backToRoles" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Volver</button>
-                <h2 id="login-role-title" class="modal-title">Iniciar Sesión</h2>
-                <p class="modal-subtitle">Ingresa tus credenciales autorizadas</p>
-                
-                <form id="form-credenciales">
-                    <div class="form-group">
-                        <label for="username"><i class="fa-solid fa-envelope"></i> Correo o Usuario</label>
-                        <input type="text" id="username" placeholder="ejemplo@colegio.edu" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password"><i class="fa-solid fa-lock"></i> Contraseña</label>
-                        <input type="password" id="password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="btn-submit-login">Ingresar al Portal</button>
-                </form>
+            <div class="card-body">
+                <p>Plataforma para los estudiantes de primaria. Accede a las clases virtuales, actividades lúdicas para el desarrollo cognitivo y tareas semanales de forma guiada.</p>
+                <a href="SantaRosa/primaria.html" class="card-btn">
+                    <span>Ingresar al Nivel</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
             </div>
         </div>
+
+        <div class="level-card secundaria">
+            <div class="card-header">
+                <div class="card-icon">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <div class="card-title-group">
+                    <span>Nivel Educativo</span>
+                    <h2>Secundaria</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>Plataforma diseñada para los estudiantes de secundaria. Desarrolla competencias científicas, de comunicación y matemáticas con accesos a herramientas avanzadas.</p>
+                <a href="SantaRosa/secundaria.html" class="card-btn">
+                    <span>Ingresar al Nivel</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="admin-floating-panel" class="floating-edit-panel hidden">
+        <span><i class="fa-solid fa-screwdriver-wrench"></i> Modo Administrador Activo</span>
+        <button class="btn-edit-mode" onclick="alert('Iniciando entorno dinámico de personalización...')">Editar Página</button>
     </div>
 
-    <script src="app.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
