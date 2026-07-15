@@ -4,46 +4,259 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubicación - I.E. Santa Rosa de Santo Domingo</title>
-    <link rel="stylesheet" href="interno.css">
-</head>
-<body>
+    <style>
+        /* ===================================================
+           1. ESTILOS GLOBALES, RESETEO Y SEGURIDAD CRÍTICA
+           =================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #fff5f6; 
+            color: #1e293b; 
+            line-height: 1.6;
+        }
+        .contenedor-principal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-<header>
-    <div class="header-contenedor">
-        <div class="logo">
-            <a href="../index.html">I.E. Santa Rosa de Santo Domingo</a>
+        /* ===================================================
+           2. BARRA DE NAVEGACIÓN (NEGRO ELEGANTE + LÍNEA ROSADA)
+           =================================================== */
+        header {
+            background-color: #111111; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-bottom: 4px solid #ffb6c1; 
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+        .brand-logo {
+            width: 45px;  
+            height: 45px;
+            object-fit: contain;
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: #ffb6c1; 
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Botón con Efecto Real 3D */
+        #menu-toggle { display: none; }
+        .menu-dropdown-btn {
+            color: #ffffff; 
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #0055ff; 
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            transition: all 0.1s ease;
+            box-shadow: 0 5px 0 #003db3, 0 8px 15px rgba(0, 85, 255, 0.4);
+            border: none;
+        }
+        .menu-dropdown-btn:hover {
+            background-color: #004ce6;
+            box-shadow: 0 5px 0 #00369e, 0 8px 15px rgba(0, 85, 255, 0.4);
+        }
+        .menu-dropdown-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #003db3, 0 2px 5px rgba(0, 85, 255, 0.4);
+        }
+        .menu-dropdown-btn::after { content: ' ▾'; }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 20px; 
+            background-color: #ffffff;
+            min-width: 280px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            border-top: 4px solid #ffb6c1;
+            list-style: none;
+            overflow: hidden;
+        }
+        .dropdown-content li a {
+            color: #111111;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .dropdown-content li a:hover {
+            background-color: #fff0f2;
+            color: #0055ff;           
+            padding-left: 26px;
+        }
+        #menu-toggle:checked ~ .dropdown-content { display: block; }
+
+        /* ===================================================
+           3. SECCIONES DE CONTENIDO Y DETALLES ARTÍSTICOS
+           =================================================== */
+        .nosotros-hero {
+            background: linear-gradient(rgba(17, 17, 17, 0.9), rgba(90, 30, 50, 0.85)), url('../IMG/FRONTIS.jpg') center/cover no-repeat;
+            color: #ffffff;
+            padding: 70px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 20px 0 30px 0;
+        }
+        .nosotros-hero h1 { font-size: 2.8rem; margin-bottom: 8px; font-weight: 700; }
+        .nosotros-hero p { font-size: 1.1rem; color: #ffb6c1; font-weight: 500; }
+        
+        .nosotros-bloque {
+            background-color: #ffffff;
+            padding: 35px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            scroll-margin-top: 100px;
+        }
+        .nosotros-bloque h2 {
+            color: #111111; 
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-left: 5px solid #ffb6c1; 
+            padding-left: 12px;
+            font-weight: 700;
+        }
+
+        .mapa-incrustado {
+            width: 100%;
+            height: 380px;
+            border: 1px solid #f0e2e4;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        .mapa-incrustado iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .tabla-datos {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        .tabla-datos th {
+            background-color: #111111;
+            color: #ffffff;
+            text-align: left;
+            padding: 12px;
+            font-weight: 600;
+        }
+        .tabla-datos td {
+            padding: 12px;
+            border-bottom: 1px solid #f0e2e4;
+            color: #475569;
+        }
+        .tabla-datos tr:nth-child(even) {
+            background-color: #fff9fa;
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-content { right: 20px; top: 75px; }
+            .nosotros-hero h1 { font-size: 2.1rem; }
+            .mapa-incrustado { height: 280px; }
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+    <header>
+        <div class="nav-container">
+            <a href="../index.html" class="brand-link" title="Ir al Portal Principal">
+                <img src="../IMG/Logo.png" alt="Logo I.E. Santa Rosa" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">I.E. Santa Rosa</span>
+                    <span class="brand-subtitle">Santo Domingo - Huarmey</span>
+                </div>
+            </a>
+
+            <nav>
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-dropdown-btn">LOCALIZACIÓN</label>
+                
+                <ul class="dropdown-content">
+                    <li><a href="#jurisdiccion">Jurisdicción Educativa</a></li>
+                    <li><a href="#mapa-satelital">Mapa Satelital</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="primaria.html">Primaria</a></li>
-                <li><a href="secundaria.html">Secundaria</a></li>
-                <li><a href="documentos.html">Documentos</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    </header>
 
     <main class="contenedor-principal">
 
-        <section class="nosotros-bloque">
-            <h2>Información de Registro Institucional</h2>
-            <p>Datos geográficos e informativos oficiales de nuestro local educativo:</p>
-            
-            <table class="tabla-info">
+        <div class="nosotros-hero">
+            <h1>Ubicación Geográfica</h1>
+            <p>Encuentra nuestra Institución Educativa en el distrito de Huarmey</p>
+        </div>
+
+        <section id="jurisdiccion" class="nosotros-bloque">
+            <h2>Jurisdicción e Información Territorial</h2>
+            <p>Nuestra localización determina la adscripción a las siguientes entidades supervisoras del sistema educativo peruano:</p>
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Ámbito Político-Educativo</th>
+                        <th>Instancia Responsable</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Dirección Física</strong></td>
-                        <td>Santo Domingo, Morropón, Piura, Perú</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Área Geográfica</strong></td>
-                        <td>Urbana / Sierra Piurana</td>
+                        <td><strong>Instancia Local (UGEL)</strong></td>
+                        <td>Unidad de Gestión Educativa Local de Huarmey (UGEL Huarmey)</td>
                     </tr>
                     <tr>
                         <td><strong>Instancia Regional (DRE)</strong></td>
-                        <td>Dirección Regional de Educación (DRE Piura)</td>
+                        <td>Dirección Regional de Educación de Áncash (DRE Áncash)</td>
                     </tr>
                     <tr>
                         <td><strong>Modalidad y Estado</strong></td>
@@ -53,16 +266,24 @@
             </table>
         </section>
 
-        <section class="nosotros-bloque">
+        <section id="mapa-satelital" class="nosotros-bloque">
             <h2>Mapa Satelital en Tiempo Real</h2>
             <p>Utiliza el siguiente plano interactivo para trazar rutas de llegada o identificar los alrededores de nuestro local escolar:</p>
             <div class="mapa-incrustado">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.8488344793444!2d-79.8824147!3d-5.0298319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a43b2f15fa8b3%3A0xe6bf44b9ffcb5b2b!2sSanto%20Domingo!5e0!3m2!1ses-419!2spe!4v1700000000000!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15651.488349008985!2d-78.150000!3d-10.066667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDA0JzAwLjAiUyA3OMKwMDknMDAuMCJX!5e0!3m2!1ses-419!2spe!4v1700000000000!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
 
     </main>
 
-    <script src="interno.js"></script>
+    <script>
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || 
+               (e.ctrlKey && e.keyCode == 85)) { 
+                return false;
+            }
+        };
+    </script>
 </body>
 </html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubicación Nivel Secundaria - I.E. Santa Rosa de Santo Domingo</title>
+    <style>
+        /* ===================================================
+           1. ESTILOS GLOBALES, RESETEO Y SEGURIDAD CRÍTICA
+           =================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #fff5f6; 
+            color: #1e293b; 
+            line-height: 1.6;
+        }
+        .contenedor-principal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ===================================================
+           2. BARRA DE NAVEGACIÓN (NEGRO ELEGANTE + LÍNEA ROSADA)
+           =================================================== */
+        header {
+            background-color: #111111; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-bottom: 4px solid #ffb6c1; 
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+        .brand-logo {
+            width: 45px;  
+            height: 45px;
+            object-fit: contain;
+        }
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: #ffb6c1; 
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Botón con Efecto Real 3D */
+        #menu-toggle { display: none; }
+        .menu-dropdown-btn {
+            color: #ffffff; 
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #0055ff; 
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            transition: all 0.1s ease;
+            box-shadow: 0 5px 0 #003db3, 0 8px 15px rgba(0, 85, 255, 0.4);
+            border: none;
+        }
+        .menu-dropdown-btn:hover {
+            background-color: #004ce6;
+            box-shadow: 0 5px 0 #00369e, 0 8px 15px rgba(0, 85, 255, 0.4);
+        }
+        .menu-dropdown-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #003db3, 0 2px 5px rgba(0, 85, 255, 0.4);
+        }
+        .menu-dropdown-btn::after { content: ' ▾'; }
+         
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 20px; 
+            background-color: #ffffff;
+            min-width: 280px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            border-top: 4px solid #ffb6c1;
+            list-style: none;
+            overflow: hidden;
+        }
+        .dropdown-content li a {
+            color: #111111;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .dropdown-content li a:hover {
+            background-color: #fff0f2;
+            color: #0055ff;           
+            padding-left: 26px;
+        }
+        #menu-toggle:checked ~ .dropdown-content { display: block; }
+
+        /* ===================================================
+           3. SECCIONES DE CONTENIDO Y DETALLES ARTÍSTICOS
+           =================================================== */
+        .nosotros-hero {
+            background: linear-gradient(rgba(17, 17, 17, 0.9), rgba(90, 30, 50, 0.85)), url('../IMG/FRONTIS.jpg') center/cover no-repeat;
+            color: #ffffff;
+            padding: 70px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 20px 0 30px 0;
+        }
+        .nosotros-hero h1 { font-size: 2.8rem; margin-bottom: 8px; font-weight: 700; }
+        .nosotros-hero p { font-size: 1.1rem; color: #ffb6c1; font-weight: 500; }
+         
+        .nosotros-bloque {
+            background-color: #ffffff;
+            padding: 35px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            scroll-margin-top: 100px;
+        }
+        .nosotros-bloque h2 {
+            color: #111111; 
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-left: 5px solid #ffb6c1; 
+            padding-left: 12px;
+            font-weight: 700;
+        }
+
+        .tabla-datos {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        .tabla-datos th {
+            background-color: #111111;
+            color: #ffffff;
+            text-align: left;
+            padding: 12px;
+            font-weight: 600;
+        }
+        .tabla-datos td {
+            padding: 12px;
+            border-bottom: 1px solid #f0e2e4;
+            color: #475569;
+        }
+        .tabla-datos tr:nth-child(even) {
+            background-color: #fff9fa;
+        }
+
+        /* Estilos de la Galería de fotos */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .galeria-item {
+            width: 100%;
+            height: 180px;
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* ===================================================
+           4. GRILLAS PARA COMPONENTES DINÁMICOS (JUEGOS Y ENLACES)
+           =================================================== */
+        .juegos-grid, .plataformas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .juego-card, .plataforma-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .juego-card:hover, .plataforma-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        .juego-portada, .plataforma-portada {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+            background-color: #f1f5f9;
+        }
+        .juego-info, .plataforma-info {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .juego-info h3, .plataforma-info h3 {
+            font-size: 1.1rem;
+            color: #111111;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .juego-info p, .plataforma-info p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .juego-btn, .plataforma-btn {
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #0055ff;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 0 #003db3;
+        }
+        .juego-btn:hover, .plataforma-btn:hover {
+            background-color: #004ce6;
+        }
+        .juego-btn:active, .plataforma-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #003db3;
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-content { right: 20px; top: 75px; }
+            .nosotros-hero h1 { font-size: 2.1rem; }
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+    <header>
+        <div class="nav-container">
+            <a href="../index.html" class="brand-link" title="Ir al Portal Principal">
+                <img src="../IMG/Logo.png" alt="Logo I.E. Santa Rosa" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">I.E. Santa Rosa</span>
+                    <span class="brand-subtitle">Nivel Secundaria - Santo Domingo</span>
+                </div>
+            </a>
+
+            <nav>
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-dropdown-btn">MENÚ SECUNDARIA</label>
+                
+                <ul class="dropdown-content">
+                    <li><a href="#informacion-plantel">Datos de Acceso</a></li>
+                    <li><a href="#galeria-secundaria">Galería</a></li>
+                    <li><a href="#juegos-educativos">Retos Académicos</a></li>
+                    <li><a href="#plataformas-educativas">Plataformas</a></li>
+                    <li><a href="../index.html" style="color: #0055ff; font-weight: bold;">← Volver al Inicio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <div class="nosotros-hero">
+            <h1>Ubicación del Nivel Secundaria</h1>
+            <p>Guía de localización, accesos y entornos interactivos para la comunidad santarrosina</p>
+        </div>
+
+        <section id="informacion-plantel" class="nosotros-bloque">
+            <h2>Información de Accesibilidad y Localización</h2>
+            <p>Para garantizar un ingreso seguro y ordenado de nuestros estudiantes del nivel secundaria, compartimos los datos esenciales de ingreso:</p>
+            
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Aspecto Clave</th>
+                        <th>Detalle de Acceso e Información</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Punto de Referencia</strong></td>
+                        <td>A pocos metros de la plaza principal de la localidad de Santo Domingo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Puerta de Ingreso Secundaria</strong></td>
+                        <td>Pabellón B (Acceso principal para el control y registro de los estudiantes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Horario de Entrada</strong></td>
+                        <td>07:30 a.m. (Se solicita puntualidad para el inicio de las sesiones de aprendizaje)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="galeria-secundaria" class="nosotros-bloque">
+            <h2>Galería Institucional</h2>
+            <p>Explora nuestros laboratorios de ciencias, aulas tecnológicas y áreas deportivas destinadas a la formación integral de los estudiantes de secundaria:</p>
+            <div class="galeria-grid">
+                <div class="galeria-item">Espacio para Imagen (IMG/laboratorio.jpg)</div>
+                <div class="galeria-item">Espacio para Imagen (IMG/taller.jpg)</div>
+                <div class="galeria-item">Espacio para Imagen (IMG/deportes.jpg)</div>
+            </div>
+        </section>
+
+        <section id="juegos-educativos" class="nosotros-bloque">
+            <h2>Retos Académicos Interactivos</h2>
+            <p>Potencia tus habilidades mediante la gamificación. Selecciona cualquiera de las dinámicas lúdicas desarrolladas para el nivel secundaria:</p>
+            
+            <div class="juegos-grid">
+                
+                <div class="juego-card">
+                    <img src="../IMG/Portada12C.png" alt="Reto de las 12 Casas" class="juego-portada">
+                    <div class="juego-info">
+                        <h3>El Reto de las 12 Casas</h3>
+                        <p>Supera cuestionarios avanzados de conocimientos y cultura general ascendiendo por los templos.</p>
+                        <a href="../Juegos/12 casas/index.html" class="juego-btn">¡INICIAR RETO!</a>
+                    </div>
+                </div>
+
+                <div class="juego-card">
+                    <img src="../IMG/PortadaH.png" alt="Juego Monitor" class="juego-portada">
+                    <div class="juego-info">
+                        <h3>Monitor Didáctico</h3>
+                        <p>Módulo interactivo para evaluar, competir y registrar actividades de razonamiento grupal.</p>
+                        <a href="../Juegos/Monitor/index.html" class="juego-btn">¡INICIAR RETO!</a>
+                    </div>
+                </div>
+
+                <div class="juego-card">
+                    <img src="../IMG/PortadaM.png" alt="Matemática Mario Bross" class="juego-portada">
+                    <div class="juego-info">
+                        <h3>Matemática Interactiva</h3>
+                        <p>Resuelve desafíos de álgebra, geometría y razonamiento para superar los mundos numéricos.</p>
+                        <a href="../Juegos/MAT_MARIO_BROSS.html" class="juego-btn">¡INICIAR RETO!</a>
+                    </div>
+                </div>
+
+                <div class="juego-card" style="opacity: 0.65;">
+                    <div class="juego-portada" style="display:flex; justify-content:center; align-items:center;">Próximamente</div>
+                    <div class="juego-info">
+                        <h3>Módulo de Ciencias 4</h3>
+                        <p>Nueva experiencia virtual interactiva de ciencias experimentales en desarrollo.</p>
+                        <a href="#" class="juego-btn" onclick="return false;" style="background-color:#94a3b8; box-shadow:0 4px 0 #64748b;">BLOQUEADO</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plataformas-educativas" class="nosotros-bloque">
+            <h2>Plataformas Educativas Digitales</h2>
+            <p>Acceso directo a las herramientas virtuales y recursos interactivos de soporte escolar externo:</p>
+            
+            <div class="plataformas-grid">
+                
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Aprendo en Casa" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>Aprendo en Casa</h3>
+                        <p>Portal oficial del Ministerio de Educación con contenidos y fichas de trabajo complementario.</p>
+                        <a href="https://www.aprendoencasa.pe" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Plataforma 2" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>Educared Telefónica</h3>
+                        <p>Espacio de aprendizaje interactivo y talleres digitales dirigidos a estudiantes y docentes.</p>
+                        <a href="https://educared.fundaciontelefonica.com.pe" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Plataforma 3" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>PerúEduca</h3>
+                        <p>Sistema digital de aprendizaje interactivo para la comunidad educativa peruana.</p>
+                        <a href="https://www.perueduca.pe" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+                <div class="plataforma-card">
+                    <img src="../IMG/plataforma_logo.png" alt="Plataforma Auxiliar" class="plataforma-portada">
+                    <div class="plataforma-info">
+                        <h3>Enlace Educativo 4</h3>
+                        <p>Descripción breve del recurso pedagógico interactivo de libre acceso para el aula.</p>
+                        <a href="https://www.google.com" target="_blank" class="plataforma-btn">INGRESAR AQUÍ</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || 
+               (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || 
+               (e.ctrlKey && e.keyCode == 85)) { 
+                return false;
+            }
+        };
+    </script>
+</body>
+</html>
