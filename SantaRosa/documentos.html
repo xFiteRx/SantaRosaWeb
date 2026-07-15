@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="interno.css">
 </head>
 <body>
-
+    
 <header>
     <div class="header-contenedor">
         <div class="logo">
@@ -25,41 +25,33 @@
     </div>
 </header>
 
-    <main class="contenedor-principal">
+<main class="contenedor-principal">
         
-        <div class="buscador-contenedor">
-            <input type="text" id="searchInput" class="buscador-input" placeholder="🔍 Buscar documentos por título o palabra clave...">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar documentos por nombre o descripción...">
         </div>
 
-        <div class="tabla-contenedor">
+        <div class="table-responsive">
             <table class="tabla-documentos">
                 <thead>
                     <tr>
-                        <th>Nombre del Documento</th>
+                        <th>Documento</th>
                         <th>Descripción</th>
                         <th>Tipo</th>
-                        <th style="text-align: center;">Acción</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody id="documentTableBody">
                     <tr>
-                        <td class="col-nombre">Reglamento Interno (RI) - 2026</td>
-                        <td class="col-descripcion">Normas de convivencia, deberes y derechos de la comunidad educativa.</td>
+                        <td class="col-nombre"><b>Reglamento Interno (RI) 2026</b></td>
+                        <td class="col-descripcion">Normas de convivencia y lineamientos institucionales para toda la comunidad educativa.</td>
                         <td class="col-tipo">PDF</td>
                         <td class="col-accion">
-                            <a href="../DOCUMENTOS/Reglamento_Interno_2026.pdf" target="_blank" class="btn-ver">Ver</a>
+                            <a href="../DOCUMENTOS/RI_2026.pdf" target="_blank" class="btn-ver">Ver</a>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col-nombre">Proyecto Educativo Institucional (PEI)</td>
-                        <td class="col-descripcion">Instrumento de gestión de mediano plazo que orienta los procesos pedagógicos.</td>
-                        <td class="col-tipo">PDF</td>
-                        <td class="col-accion">
-                            <a href="../DOCUMENTOS/PEI_SantaRosa.pdf" target="_blank" class="btn-ver">Ver</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-nombre">Cronograma Anual de Actividades</td>
+                        <td class="col-nombre"><b>Cronograma de Actividades</b></td>
                         <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
                         <td class="col-tipo">PDF</td>
                         <td class="col-accion">
