@@ -10,17 +10,16 @@
             --rosa-principal: #e56b6f;
             --rosa-suave: #fff0f2;
             --rosa-borde: #ffb7c5;
-            --oscuro: #1e1e24;
-            --oscuro-suave: #2a2b3d;
+            --oscuro: #252629;
+            --oscuro-suave: #333538;
             --amarillo-crema: #fff3b0;
             --blanco: #ffffff;
-            --texto-oscuro: #2d3748;
-            --texto-mutado: #718096;
+            --texto-oscuro: #333333;
+            --texto-mutado: #666666;
             
-            /* Colores de acento para efectos 3D de las tarjetas */
-            --color-primaria: #00b4d8;
-            --color-secundaria: #f77f00;
-            --sombra-premium: 0 15px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+            /* Colores de acento para efectos 3D */
+            --glow-estudiantes: #00d2ff;
+            --glow-docentes: #ffb703;
         }
 
         /* SEGURIDAD CSS: Evita la selección de texto en toda la página */
@@ -36,455 +35,1035 @@
             user-select: none;
         }
 
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
+
+        a, button, .playlist-video-item, .role-card-3d, #closeModal, #backToRoles, .btn-admin-action, .btn-admin-action-danger {
+            cursor: pointer;
+        }
+
         body {
-            background-color: var(--rosa-suave);
+            background-color: #fcf8f8;
             color: var(--texto-oscuro);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* NAV BAR ESTILO PREMIUM */
-        header {
-            background-color: var(--oscuro);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid var(--rosa-principal);
-            object-fit: cover;
-        }
-
-        .logo-texto {
-            color: var(--blanco);
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
-
-        .nav-links a:hover {
-            color: var(--blanco);
-            background-color: rgba(255, 255, 255, 0.08);
-        }
-
-        .nav-links li.activo a {
-            color: var(--rosa-principal);
-            font-weight: 600;
-            background-color: rgba(229, 107, 111, 0.1);
-        }
-
-        /* SECCIÓN DE HÉROE / BIENVENIDA */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 40px 20px;
-            background: linear-gradient(180deg, var(--rosa-suave) 0%, rgba(255,255,255,0.8) 100%);
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: var(--oscuro);
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--texto-mutated);
-            max-width: 600px;
-            margin: 0 auto;
             line-height: 1.6;
         }
 
-        /* CONTENEDOR DE TARJETAS (CARDS GRID) */
-        .academic-container {
-            max-width: 1100px;
-            margin: 0 auto 80px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 40px;
-            width: 100%;
-        }
-
-        /* DISEÑO REVOLUCIONARIO DE LAS TARJETAS */
-        .level-card {
-            background-color: var(--blanco);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--sombra-premium);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(229, 107, 111, 0.1);
-        }
-
-        .level-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .level-card.primaria::before {
-            background: linear-gradient(90deg, var(--color-primaria), #0077b6);
-        }
-
-        .level-card.secundaria::before {
-            background: linear-gradient(90deg, var(--color-secundaria), #d90429);
-        }
-
-        .level-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
-        }
-
-        /* Cabecera interna de la Tarjeta */
-        .card-header {
-            padding: 40px 30px 20px 30px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .card-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--blanco);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-            transition: all 0.3s ease;
-        }
-
-        .primaria .card-icon {
-            background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-        }
-
-        .secundaria .card-icon {
-            background: linear-gradient(135deg, #f77f00 0%, #fcbf49 100%);
-        }
-
-        .card-title-group h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--oscuro);
-            margin-bottom: 4px;
-        }
-
-        .card-title-group span {
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .primaria .card-title-group span { color: var(--color-primaria); }
-        .secundaria .card-title-group span { color: var(--color-secundaria); }
-
-        /* Cuerpo de la Tarjeta */
-        .card-body {
-            padding: 10px 30px 35px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-
-        .card-body p {
-            color: var(--texto-mutado);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        /* Botón Interactuable Dinámico */
-        .card-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 16px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .primaria .card-btn {
-            background-color: #f0faff;
-            color: var(--color-primaria);
-            border: 1px solid rgba(0, 180, 216, 0.15);
-        }
-
-        .primaria .card-btn:hover {
-            background-color: var(--color-primaria);
-            color: var(--blanco);
-            box-shadow: 0 8px 25px rgba(0, 180, 216, 0.3);
-        }
-
-        .secundaria .card-btn {
-            background-color: #fffaf0;
-            color: var(--color-secundaria);
-            border: 1px solid rgba(247, 127, 0, 0.15);
-        }
-
-        .secundaria .card-btn:hover {
-            background-color: var(--color-secundaria);
-            color: var(--blanco);
-            box-shadow: 0 8px 25px rgba(247, 127, 0, 0.3);
-        }
-
-        /* PORTAL DE ACCESO / LOGOUT */
-        .auth-section {
-            display: flex;
-            align-items: center;
-        }
-
-        .btn-admin {
-            color: var(--blanco);
-            background-color: rgba(255, 255, 255, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-admin:hover {
-            background-color: var(--rosa-principal);
-            transform: scale(1.05);
-        }
-
-        /* PANEL FLOTANTE CONTROL SOPORTE TI */
-        .floating-edit-panel {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: var(--oscuro);
-            border-radius: 16px;
-            padding: 15px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 2000;
-            border: 1px solid rgba(255,255,255,0.1);
-            animation: slideInUp 0.5s ease-out;
-        }
-
-        .floating-edit-panel span {
-            color: var(--blanco);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .btn-edit-mode {
-            background-color: var(--rosa-principal);
-            border: none;
-            color: var(--blanco);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-edit-mode:hover {
-            background-color: #d85a5e;
-            transform: translateY(-2px);
-        }
-
+        /* CLASE CLAVE PARA OCULTAR ELEMENTOS ELEMENTALMENTE */
         .hidden {
             display: none !important;
         }
 
-        @keyframes slideInUp {
-            from {
-                transform: translateY(100px);
-                opacity: 0;
+        /* BANNER INFORMATIVO SUPERIOR */
+        .top-info-bar {
+            background-color: var(--oscuro);
+            color: var(--blanco);
+            font-size: 0.85em;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .top-info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-info-item i { color: var(--rosa-borde); }
+
+        .top-social-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .top-social-links a {
+            color: var(--blanco);
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .top-social-links a:hover { color: var(--rosa-principal); }
+
+        /* BARRA DE NAVEGACIÓN */
+        .main-navbar {
+            background-color: var(--blanco);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-bottom: 3px solid var(--rosa-borde);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--texto-oscuro);
+        }
+
+        .navbar-brand img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-text h2 {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--oscuro-suave);
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 0.75em;
+            color: var(--texto-mutated);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .nav-menu li { position: relative; }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--oscuro-suave);
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 8px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-menu li a:hover, .nav-menu li a.active, .nav-menu li:hover > a {
+            color: var(--rosa-principal);
+            background-color: var(--rosa-suave);
+            box-shadow: inset 0 0 0 1px var(--rosa-borde);
+        }
+
+        /* DISEÑO DESPLEGABLE REFINADO */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--blanco);
+            min-width: 200px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-radius: 12px;
+            border: 1px solid var(--rosa-borde);
+            list-style: none;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            z-index: 1100;
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(4px);
+        }
+
+        .dropdown-menu li a {
+            color: var(--texto-oscuro) !important;
+            border-radius: 0 !important;
+            padding: 10px 20px !important;
+            font-weight: 500;
+            font-size: 0.9em;
+            box-shadow: none !important;
+            background: transparent !important;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-menu li a:hover {
+            color: var(--rosa-principal) !important;
+            background-color: var(--rosa-suave) !important;
+        }
+
+        /* ESTILOS PARA LA SECCIÓN DE AUTENTICACIÓN DINÁMICA DEL NAVBAR */
+        .user-nav-profile-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--rosa-principal);
+            padding: 6px 14px;
+            border-radius: 25px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(229, 107, 111, 0.2);
+        }
+
+        .user-nav-avatar {
+            background-color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--rosa-principal);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .user-nav-info {
+            text-align: left;
+            line-height: 1.1;
+        }
+
+        .user-nav-name {
+            font-size: 13px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .user-nav-role {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        .user-nav-logout-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 13px;
+            margin-left: 6px;
+            padding: 2px;
+            transition: transform 0.2s;
+        }
+        .user-nav-logout-btn:hover {
+            transform: scale(1.15);
+        }
+
+        /* BOTÓN DE ACCESO REEMPLAZADO POR CONTENEDOR FLOTANTE */
+        .btn-admin {
+            background: linear-gradient(135deg, var(--rosa-principal) 0%, #d4575b 100%);
+            color: var(--blanco) !important;
+            width: 40px;
+            height: 40px;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            border: 2px solid var(--blanco);
+            text-decoration: none;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            animation: pulseAdmin 2.5s infinite alternate;
+        }
+
+        @keyframes pulseAdmin {
+            0% { box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: scale(1); }
+            100% { box-shadow: 0 4px 15px rgba(229, 107, 111, 0.4); transform: scale(1.05); }
+        }
+
+        /* HERO SLIDER */
+        .hero-section {
+            position: relative;
+            border-bottom: 4px solid var(--rosa-borde);
+            height: 480px;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        .hero-bg-slider, .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            filter: none;
+        }
+
+        .slide.active { 
+            opacity: 1;  
+        }
+
+        /* CONTADORES AJUSTADOS */
+        .hero-counters-overlay {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .elementor-counter {
+            position: relative;
+            background: rgba(28, 29, 32, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 40px 15px 20px 15px;
+            text-align: center;
+            color: var(--blanco);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .elementor-counter:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .icon-box-3d {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8em;
+            z-index: 5;
+            transition: transform 0.3s ease;
+        }
+
+        .bg-student-3d {
+            background: linear-gradient(135deg, #120e2e 0%, #0077b6 100%);
+            color: var(--glow-estudiantes);
+            box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3), 
+                        inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                        0 0 0 4px rgba(28, 29, 32, 0.8);
+            animation: floatUpDown 4s ease-in-out infinite alternate;
+        }
+
+        .bg-teacher-3d {
+            background: linear-gradient(135deg, #241400 0%, #b7791f 100%);
+            color: var(--glow-docentes);
+            box-shadow: 0 8px 20px rgba(255, 183, 3, 0.3), 
+                        inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                        0 0 0 4px rgba(28, 29, 32, 0.8);
+            animation: floatUpDown 4.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatUpDown {
+            0% { transform: translateX(-50%) translateY(0); }
+            100% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        .elementor-counter-title {
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #d1d5db;
+            margin-bottom: 2px;
+        }
+
+        .elementor-counter-number-wrapper {
+            font-size: 2.5em;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .num-student {
+            background: linear-gradient(135deg, #ffffff 40%, var(--glow-estudiantes) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .num-teacher {
+            background: linear-gradient(135deg, #ffffff 40%, var(--glow-docentes) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* SECCIÓN MULTIMEDIA OPTIMIZADA */
+        .project-section {
+            background-color: #1a1b1e;
+            color: var(--blanco);
+            padding: 60px 5%;
+        }
+
+        .project-container { max-width: 1200px; margin: 0 auto; }
+        
+        .project-intro-text h2 { 
+            font-size: 1.8em; 
+            color: var(--amarillo-crema); 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+        }
+        .project-intro-text p { 
+            color: #e0e0e0; 
+            margin-bottom: 25px; 
+            max-width: 1000px; 
+            font-size: 1.05em;
+        }
+        .project-intro-text strong {
+            color: var(--rosa-borde);
+            font-weight: 600;
+        }
+
+        .ucv-video-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; background-color: #111214; padding: 25px; border-radius: 12px; border-left: 5px solid var(--rosa-principal); }
+        .video-player-box { position: relative; width: 100%; aspect-ratio: 16 / 9; background-color: #000; border-radius: 8px; overflow: hidden; }
+        .video-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .ucv-playlist-side { display: flex; flex-direction: column; gap: 12px; max-height: 450px; overflow-y: auto; }
+        .playlist-header-title { background-color: #cc1829; color: var(--blanco); padding: 12px 15px; font-size: 0.9em; font-weight: bold; border-radius: 6px; text-transform: uppercase; }
+        .playlist-video-item { background-color: #202226; border-radius: 6px; padding: 12px; display: flex; align-items: center; gap: 15px; border: 1px solid #2d3035; transition: background 0.2s; }
+        .playlist-video-item:hover { background-color: #2b2e34; }
+        .playlist-video-item.playing-now { background-color: #2b2e34; border-color: var(--rosa-principal); }
+        .video-item-thumb { width: 45px; height: 45px; background-color: #111214; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--amarillo-crema); flex-shrink: 0; }
+        .video-item-details { color: #e0e0e0; font-size: 0.88em; font-weight: 500; }
+
+        /* PIE DE PÁGINA */
+        .main-footer { background-color: var(--oscuro); color: #bbb; padding: 60px 5% 20px 5%; font-size: 0.95em; }
+        .footer-container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr 1fr; 
+            gap: 40px; 
+            padding-bottom: 40px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        
+        .footer-logo-side { display: flex; flex-direction: column; gap: 15px; }
+        .footer-logo { display: flex; align-items: center; gap: 12px; color: var(--blanco); }
+        .footer-logo img { height: 50px; width: auto; }
+        .footer-logo h3 { font-size: 1.3em; font-weight: 700; color: var(--blanco); }
+        .footer-text-muted { font-size: 0.88em; color: #8a8d91; line-height: 1.5; }
+        
+        .footer-box h3 { color: var(--blanco); margin-bottom: 20px; font-size: 1.05em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; position: relative; }
+        .footer-box h3::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 30px; height: 2px; background-color: var(--rosa-principal); }
+        
+        .footer-info-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-info-list li { display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; color: #ccced1; }
+        .footer-info-list li i { color: var(--rosa-borde); margin-top: 3px; font-size: 0.95em; }
+        .footer-info-list li strong { color: var(--blanco); font-weight: 600; }
+        
+        .reclamaciones-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--amarillo-crema);
+            color: #514600 !important;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.88em;
+            margin-top: 5px;
+            transition: opacity 0.2s;
+        }
+        .reclamaciones-link:hover { opacity: 0.9; }
+
+        .footer-bottom { text-align: center; padding-top: 20px; font-size: 0.85em; color: #6c7075; }
+
+        /* ESTILOS DE EFECTO 3D INTERACTIVOS PARA LAS TARJETAS */
+        .role-card-3d {
+            border: 1px solid #eaeded;
+            border-radius: 12px;
+            padding: 22px 15px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .role-card-3d:hover {
+            transform: translateY(-4px);
+            border-color: #f4b400 !important;
+            box-shadow: 0 10px 20px rgba(244, 180, 0, 0.15);
+        }
+        .role-card-3d span {
+            font-weight: 600;
+            font-size: 15px;
+            color: #333333;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* ESTILOS PARA EL PANEL DE SOPORTE TI FLOTANTE */
+        .admin-panel {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 3000;
+            background-color: #1e1e24;
+            color: #ffffff;
+            border: 2px solid #ff4d6d;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+            width: 280px;
+        }
+
+        .admin-panel-header {
+            font-weight: 700;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+            color: #ff6b6b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+
+        .btn-admin-action, .btn-admin-action-danger {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: left;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .btn-admin-action:active, .btn-admin-action-danger:active {
+            transform: scale(0.98);
+        }
+
+        .btn-admin-action {
+            background-color: #3a3f58;
+            color: #fff;
+        }
+
+        .btn-admin-action:hover {
+            background-color: #4e5578;
+        }
+
+        .btn-admin-action-danger {
+            background-color: #8b2635;
+            color: #fff;
+        }
+
+        .btn-admin-action-danger:hover {
+            background-color: #b3394b;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .ucv-video-layout { grid-template-columns: 1fr; }
+            .hero-section { height: 520px; }
+            .hero-counters-overlay { 
+                grid-template-columns: 1fr; 
+                gap: 55px; 
+                max-width: 320px; 
+                bottom: 20px;
             }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            .nav-menu { display: none; }
+            .top-info-bar { flex-direction: column; text-align: center; justify-content: center; gap: 10px; padding: 10px 5%; }
+            .footer-container { grid-template-columns: 1fr; gap: 30px; }
+            .admin-panel { right: 15px; bottom: 15px; width: calc(100% - 30px); max-width: 320px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo-container">
-            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=150" alt="Logo Santa Rosa" class="logo-img">
-            <div class="logo-texto">Santa Rosa</div>
+    <div class="top-info-bar">
+        <div class="top-info-item">
+            <i class="fa-solid fa-location-dot"></i> 
+            <span>A.H. Santo Domingo, Huarmey - Áncash</span>
+        </div>
+        
+        <div class="top-info-item">
+            <i class="fa-solid fa-school"></i> 
+            <span>Escuela pública | Construyendo nuestro futuro</span>
+        </div>
+        
+        <div class="top-social-links">
+            <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </div>
+
+    <nav class="main-navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="IMG/Logo.png" alt="Insignia I.E. Santa Rosa">
+            <div class="brand-text">
+                <h2>I.E. Santa Rosa</h2>
+                <p>Santo Domingo - Huarmey</p>
+            </div>
         </a>
 
-        <ul class="nav-links">
-            <li class="activo"><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
-            <li><a href="SantaRosa/primaria.html"><i class="fa-solid fa-graduation-cap"></i> Primaria</a></li>
-            <li><a href="SantaRosa/secundaria.html"><i class="fa-solid fa-book-open"></i> Secundaria</a></li>
-            <li><a href="SantaRosa/documentos.html"><i class="fa-solid fa-folder-open"></i> Documentos</a></li>
-            <li><a href="SantaRosa/ubicacion.html"><i class="fa-solid fa-map-location-dot"></i> Ubicación</a></li>
-            <li><a href="SantaRosa/nosotros.html"><i class="fa-solid fa-circle-info"></i> Nosotros</a></li>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li>
+                <a href="javascript:void(0);">Niveles <i class="fa-solid fa-chevron-down" style="font-size: 0.75em;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="SantaRosa/primaria.html">Primaria</a></li>
+                    <li><a href="SantaRosa/secundaria.html">Secundaria</a></li>
+                </ul>
+            </li>
+            <li><a href="SantaRosa/nosotros.html">Nosotros</a></li>
+            <li><a href="SantaRosa/documentos.html">Documentos</a></li>
+            <li><a href="SantaRosa/contacto.html">Ubicacion</a></li>
+            
+            <!-- SECCIÓN DE AUTENTICACIÓN DINÁMICA DE LA NAVBAR -->
+            <li id="navbar-auth-section">
+                <a id="btn-login-modal" class="btn-admin" title="Portal de Acceso">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </a>
+            </li>
         </ul>
+    </nav>
 
-        <div class="auth-section" id="auth-navbar-section">
-            <a id="btn-login-modal" class="btn-admin" title="Portal de Acceso">
-                <i class="fa-solid fa-right-to-bracket"></i>
-            </a>
+    <header class="hero-section">
+        <div class="hero-bg-slider">
+            <div class="slide active" style="background-image: url('IMG/FRONTIS.jpg');"></div>
+            <div class="slide" style="background-image: url('IMG/Primaria1.jpg');"></div>
+            <div class="slide" style="background-image: url('IMG/Secundaria2.jpg');"></div>
+        </div>
+
+        <div class="hero-counters-overlay">
+            <div class="elementor-counter">
+                <div class="icon-box-3d bg-student-3d">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="elementor-counter-title">Estudiantes</div>
+                <div class="elementor-counter-number-wrapper">
+                    <span class="elementor-counter-number num-student" data-duration="2000" data-to-value="680" data-from-value="0">0</span>
+                </div>
+            </div>
+
+            <div class="elementor-counter">
+                <div class="icon-box-3d bg-teacher-3d">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <div class="elementor-counter-title">Docentes</div>
+                <div class="elementor-counter-number-wrapper">
+                    <span class="elementor-counter-number num-teacher" data-duration="2000" data-to-value="25" data-from-value="0">0</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>Niveles Académicos</h1>
-        <p>Explora nuestras plataformas interactivas y herramientas de aprendizaje adaptadas para cada etapa de la educación escolar.</p>
+    <section class="project-section">
+        <div class="project-container">
+            <div class="project-intro-text">
+                <h2>Nuestra Institución</h2>
+                <p>La <strong>I.E. Santa Rosa de Santo Domingo</strong> es una institución pública de educación básica regular mixta que atiende con orgullo los niveles de <strong>Primaria (turno mañana)</strong> y <strong>Secundaria (turno tarde)</strong> en la provincia de Huarmey, Áncash. Adscrita a la UGEL Huarmey, garantizamos la continuidad y calidad educativa de la comunidad escolar santarosina.</p>
+            </div>
+            <div class="ucv-video-layout">
+                <div class="video-player-box">
+                    <iframe id="ucv-main-player" src="https://www.youtube.com/embed/p3X_S65pGZ8?enablejsapi=1" title="Reproductor" allowfullscreen></iframe>
+                </div>
+                <div class="ucv-playlist-side">
+                    <div class="playlist-header-title">Videos del Proyecto:</div>
+                    <div class="playlist-video-item playing-now" id="default-video-item">
+                        <div class="video-item-thumb"><i class="fa-solid fa-play"></i></div>
+                        <div class="video-item-details">¡Bienvenidos al año escolar!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <main class="academic-container">
-        
-        <div class="level-card primaria">
-            <div class="card-header">
-                <div class="card-icon">
-                    <i class="fa-solid fa-child"></i>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo-side">
+                <div class="footer-logo">
+                    <img src="IMG/Logo.png" alt="Insignia I.E. Santa Rosa">
+                    <h3>I.E. Santa Rosa</h3>
                 </div>
-                <div class="card-title-group">
-                    <span>Nivel Educativo</span>
-                    <h2>Primaria</h2>
-                </div>
+                <p class="footer-text-muted">Santo Domingo - Huarmey | Portal Oficial de Transparencia e Información Institucional.</p>
             </div>
-            <div class="card-body">
-                <p>Plataforma para los estudiantes de primaria. Accede a las clases virtuales, actividades lúdicas para el desarrollo cognitivo y tareas semanales de forma guiada.</p>
-                <a href="SantaRosa/primaria.html" class="card-btn">
-                    <span>Ingresar al Nivel</span>
-                    <i class="fa-solid fa-arrow-right-long"></i>
+
+            <div class="footer-box">
+                <h3>Horario de Atención</h3>
+                <ul class="footer-info-list">
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <strong>Atención al Padre de Familia:</strong><br>
+                            Lunes a Viernes<br>
+                            9:00 AM a 4:00 PM
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-box">
+                <h3>Contacto</h3>
+                <ul class="footer-info-list" style="margin-bottom: 15px;">
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Puedes contactarnos llamando al:</strong><br>
+                            ( 01 ) 202-4342
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div>
+                            <strong>A través de WhatsApp al:</strong><br>
+                            ( 51 ) 12024342
+                        </div>
+                    </li>
+                </ul>
+                <a href="libro-reclamaciones.html" class="reclamaciones-link">
+                    <i class="fa-solid fa-book"></i> Libro de Reclamaciones
                 </a>
             </div>
         </div>
+        <div class="footer-bottom">&copy; 2026 I.E. Santa Rosa de Santo Domingo.</div>
+    </footer>
 
-        <div class="level-card secundaria">
-            <div class="card-header">
-                <div class="card-icon">
-                    <i class="fa-solid fa-user-graduate"></i>
-                </div>
-                <div class="card-title-group">
-                    <span>Nivel Educativo</span>
-                    <h2>Secundaria</h2>
-                </div>
-            </div>
-            <div class="card-body">
-                <p>Plataforma diseñada para los estudiantes de secundaria. Desarrolla competencias científicas, de comunicación y matemáticas con accesos a herramientas avanzadas.</p>
-                <a href="SantaRosa/secundaria.html" class="card-btn">
-                    <span>Ingresar al Nivel</span>
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                </a>
-            </div>
+    <!-- INTERFAZ / PANEL FLOTANTE DE ACCIONES EXCLUSIVO DE SOPORTE TI (Oculto inicialmente) -->
+    <div id="admin-floating-panel" class="admin-panel hidden">
+        <div class="admin-panel-header">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <span>Modo Soporte TI Activo</span>
         </div>
+        <div class="admin-panel-body">
+            <button onclick="alert('Funcionalidad activada: Ahora puede arrastrar y reordenar las secciones del inicio.')" class="btn-admin-action">
+                <i class="fa-solid fa-arrows-up-down-left-right"></i> Mover / Editar Secciones
+            </button>
+            <button onclick="alert('Formulario abierto: Registrar un nuevo docente en la base de datos de la I.E.')" class="btn-admin-action">
+                <i class="fa-solid fa-user-plus"></i> Dar de Alta Maestro
+            </button>
+            <button onclick="alert('Advertencia: Accediendo a la nómina de usuarios para revocación de accesos.')" class="btn-admin-action-danger">
+                <i class="fa-solid fa-user-minus"></i> Eliminar / Dar de Baja
+            </button>
+        </div>
+    </div>
 
-    </main>
+    <!-- CONTENEDOR MODAL DE LOGIN -->
+    <div id="loginModal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px); align-items: center; justify-content: center;">
+        <div style="background-color: #ffffff; padding: 35px; border-radius: 16px; width: 90%; max-width: 760px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.7); position: relative; transition: all 0.3s ease;">
+            
+            <!-- Botón de cierre (X) -->
+            <span id="closeModal" style="position: absolute; right: 22px; top: 16px; font-size: 26px; cursor: pointer; color: #888; font-weight: bold; transition: color 0.2s;" onmouseover="this.style.color='#e56b6f'" onmouseout="this.style.color='#888'">&times;</span>
+            
+            <!-- Botón de volver interno -->
+            <span id="backToRoles" style="display: none; position: absolute; left: 22px; top: 22px; font-size: 14px; cursor: pointer; color: var(--rosa-principal); font-weight: 600;">
+                ← Volver
+            </span>
 
-    <div id="admin-floating-panel" class="floating-edit-panel hidden">
-        <span><i class="fa-solid fa-screwdriver-wrench"></i> Modo Administrador Activo</span>
-        <button class="btn-edit-mode" onclick="alert('Iniciando entorno dinámico de personalización...')">Editar Página</button>
+            <!-- VISTA 1: MENÚ DE PERFILES PRINCIPALES -->
+            <div id="roleSelectionView">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h3 style="margin: 0; color: #252629; font-size: 24px; font-weight: 700;">Plataforma Educativa</h3>
+                    <p style="margin: 4px 0 0 0; color: var(--texto-mutado); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Selecciona tu perfil de ingreso</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
+                    <div class="role-card-3d" id="role-estudiante">
+                        <i class="fa-solid fa-graduation-cap" style="font-size: 2.4em; color: #0077b6; display: block;"></i>
+                        <span>Estudiante</span>
+                    </div>
+                    <div class="role-card-3d" id="role-docente">
+                        <i class="fa-solid fa-chalkboard-user" style="font-size: 2.4em; color: #b7791f; display: block;"></i>
+                        <span>Docente</span>
+                    </div>
+                    <div class="role-card-3d" id="role-director">
+                        <i class="fa-solid fa-user-tie" style="font-size: 2.4em; color: #252629; display: block;"></i>
+                        <span>Director</span>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a id="link-soporte" style="font-size: 13px; color: var(--texto-mutado); text-decoration: none; font-weight: 600; transition: color 0.2s; cursor: pointer;" onmouseover="this.style.color='#e56b6f'; this.style.textDecoration='underline';" onmouseout="this.style.color= 'var(--texto-mutated)'; this.style.textDecoration='none';">
+                        <i class="fa-solid fa-screwdriver-wrench"></i> Soporte TI
+                    </a>
+                </div>
+            </div>
+
+            <!-- VISTA 2: FORMULARIO DINÁMICO DE ACCESO -->
+            <div id="loginFormView" style="display: none; max-width: 400px; margin: 0 auto;">
+                <div style="text-align: center; margin-bottom: 25px; margin-top: 10px;">
+                    <div id="formIconContainer" style="font-size: 2.3em; margin-bottom: 5px;"></div>
+                    <h3 id="formTitle" style="margin: 0; color: #252629; font-size: 20px; font-weight: 700;">Acceso</h3>
+                    <p style="margin: 3px 0 0 0; color: var(--texto-mutado); font-size: 12px;">I.E. Santa Rosa - Huarmey</p>
+                </div>
+
+                <form id="loginForm">
+                    <input type="hidden" id="selectedRole" value="">
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: #333; font-size: 13px; font-weight: 600;">Correo Electrónico:</label>
+                        <input type="email" id="loginEmail" required placeholder="ejemplo@iesantarosa.edu.pe" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; color: #333; outline: none;" onfocus="this.style.borderColor='#e56b6f'" onblur="this.style.borderColor='#ccc'">
+                    </div>
+                    
+                    <div style="margin-bottom: 22px;">
+                        <label style="display: block; margin-bottom: 5px; color: #333; font-size: 13px; font-weight: 600;">Contraseña:</label>
+                        <input type="password" id="loginPassword" required placeholder="••••••••" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; color: #333; outline: none;" onfocus="this.style.borderColor='#e56b6f'" onblur="this.style.borderColor='#ccc'">
+                    </div>
+
+                    <div id="loginError" style="display: none; color: #d9534f; background-color: #f2dede; padding: 10px; border-radius: 6px; font-size: 13px; margin-bottom: 15px; text-align: center; border: 1px solid #ebccd1;"></div>
+
+                    <button type="submit" id="submitBtn" style="width: 100%; padding: 12px; color: #000; border: none; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s;">
+                        Ingresar a la Plataforma
+                    </button>
+                </form>
+            </div>
+
+        </div>
     </div>
 
     <script>
-        // SEGURIDAD FRONT-END: Deshabilitar F12, Ctrl+U, etc.
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123 || 
-               (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || 
-               (e.ctrlKey && e.keyCode == 85)) { 
-                return false;
+        // SEGURIDAD: Deshabilitar Clic Derecho
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        }, false);
+
+        // SEGURIDAD: Deshabilitar atajos de teclado de copia e inspección
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+            if (e.ctrlKey && e.key === 's') { e.preventDefault(); return false; }
+        });
+
+        // CARRUSEL DE IMÁGENES
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        setInterval(() => {
+            if(slides.length > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
             }
-        };
+        }, 5000);
 
-        // Simulación lógica del portal de accesos
+        // REPRODUCTOR DE PLAYLIST
+        function cambiarVideoUCV(elemento, idVideo) {
+            document.querySelectorAll('.playlist-video-item').forEach(item => item.classList.remove('playing-now'));
+            elemento.classList.add('playing-now');
+            document.getElementById('ucv-main-player').src = "https://www.youtube.com/embed/" + idVideo + "?enablejsapi=1&autoplay=1";
+        }
+
+        // CONTROL INTEGRADO CUANDO EL DOM ESTÉ LISTO
         document.addEventListener("DOMContentLoaded", () => {
-            const loginBtn = document.getElementById('btn-login-modal');
-            const authSection = document.getElementById('auth-navbar-section');
-            const adminPanel = document.getElementById('admin-floating-panel');
+            
+            // Asignar evento al elemento por defecto de la playlist
+            const defaultVideo = document.getElementById('default-video-item');
+            if (defaultVideo) {
+                defaultVideo.addEventListener('click', function() {
+                    cambiarVideoUCV(this, 'p3X_S65pGZ8');
+                });
+            }
 
-            if (loginBtn) {
-                loginBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
+            // ANIMACIÓN DE LOS CONTADORES
+            const counters = document.querySelectorAll('.elementor-counter-number');
+            counters.forEach(counter => {
+                const toValue = parseInt(counter.getAttribute('data-to-value'));
+                const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+                let startTime = null;
+
+                const animateCounter = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const currentCount = Math.min(Math.floor((progress / duration) * toValue), toValue);
                     
-                    // Simulación del login exitoso como Soporte TI
-                    const rolSimulado = "Soporte TI"; 
+                    counter.textContent = currentCount;
+                    if (progress < duration) {
+                        requestAnimationFrame(animateCounter);
+                    } else {
+                        counter.textContent = toValue;
+                    }
+                };
+                requestAnimationFrame(animateCounter);
+            });
 
+            // GESTIÓN DEL MODAL Y SIMULACIÓN COMPLETA DE ACCESO POR ROLES (FIREBASE INTEGRATION READY)
+            const modal = document.getElementById('loginModal');
+            const authSection = document.getElementById('navbar-auth-section');
+            const adminFloatingPanel = document.getElementById('admin-floating-panel');
+            
+            const btnClose = document.getElementById('closeModal');
+            const btnBack = document.getElementById('backToRoles');
+            
+            const roleSelectionView = document.getElementById('roleSelectionView');
+            const loginFormView = document.getElementById('loginFormView');
+            const loginForm = document.getElementById('loginForm');
+            const loginError = document.getElementById('loginError');
+
+            const cardEstudiante = document.getElementById('role-estudiante');
+            const cardDocente = document.getElementById('role-docente');
+            const cardDirector = document.getElementById('role-director');
+            const linkSoporte = document.getElementById('link-soporte');
+
+            // Delegación de apertura delegada por clase/id dinámico
+            if (authSection) {
+                authSection.addEventListener('click', (e) => {
+                    const trigger = e.target.closest('#btn-login-modal');
+                    if (trigger) {
+                        e.preventDefault();
+                        resetearModal();
+                        modal.style.display = 'flex';
+                    }
+                });
+            }
+
+            if (btnClose) {
+                btnClose.addEventListener('click', () => { modal.style.display = 'none'; });
+            }
+
+            window.addEventListener('click', (e) => { 
+                if (e.target === modal) modal.style.display = 'none'; 
+            });
+
+            if (btnBack) {
+                btnBack.addEventListener('click', () => { resetearModal(); });
+            }
+
+            if(cardEstudiante) cardEstudiante.addEventListener('click', () => mostrarFormulario('Estudiante', '#0077b6'));
+            if(cardDocente) cardDocente.addEventListener('click', () => mostrarFormulario('Docente', '#b7791f'));
+            if(cardDirector) cardDirector.addEventListener('click', () => mostrarFormulario('Director', '#252629'));
+            if(linkSoporte) linkSoporte.addEventListener('click', () => mostrarFormulario('Soporte TI', '#e56b6f'));
+
+            function resetearModal() {
+                if (roleSelectionView) roleSelectionView.style.display = 'block';
+                if (loginFormView) loginFormView.style.display = 'none';
+                if (btnBack) btnBack.style.display = 'none';
+                if (loginForm) loginForm.reset();
+                if (loginError) loginError.style.display = 'none';
+                
+                const iconBox = document.getElementById('formIconContainer');
+                if (iconBox) iconBox.innerHTML = '';
+            }
+
+            function mostrarFormulario(rol, colorTema) {
+                if (!roleSelectionView || !loginFormView || !btnBack) return;
+
+                roleSelectionView.style.display = 'none';
+                loginFormView.style.display = 'block';
+                btnBack.style.display = 'block';
+
+                const selectedRoleInput = document.getElementById('selectedRole');
+                const formTitle = document.getElementById('formTitle');
+                if (selectedRoleInput) selectedRoleInput.value = rol;
+                if (formTitle) formTitle.textContent = "Acceso para " + rol;
+                
+                const iconBox = document.getElementById('formIconContainer');
+                if (iconBox) {
+                    let iconHtml = '';
+                    switch(rol) {
+                        case 'Estudiante':
+                            iconHtml = `<i class="fa-solid fa-graduation-cap" style="color: ${colorTema};"></i>`;
+                            break;
+                        case 'Docente':
+                            iconHtml = `<i class="fa-solid fa-chalkboard-user" style="color: ${colorTema};"></i>`;
+                            break;
+                        case 'Director':
+                            iconHtml = `<i class="fa-solid fa-user-tie" style="color: ${colorTema};"></i>`;
+                            break;
+                        case 'Soporte TI':
+                            iconHtml = `<i class="fa-solid fa-screwdriver-wrench" style="color: ${colorTema};"></i>`;
+                            break;
+                    }
+                    iconBox.innerHTML = iconHtml;
+                }
+
+                const btnSubmit = document.getElementById('submitBtn');
+                if (btnSubmit) {
+                    if (rol === 'Docente' || rol === 'Director') {
+                        btnSubmit.style.background = "linear-gradient(135deg, #ffcd3f 0%, #f4b400 100%)";
+                        btnSubmit.style.color = "#000";
+                    } else {
+                        btnSubmit.style.background = colorTema;
+                        btnSubmit.style.color = "#fff";
+                    }
+                }
+            }
+
+            // SIMULACIÓN DE PROCESAMIENTO DE LOGIN DE FIREBASE COMPATIBLE CON CAMBIOS DINÁMICOS
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const rol = document.getElementById('selectedRole').value;
+                    const email = document.getElementById('loginEmail').value;
+                    
+                    // Definición de nombres simulados basados en las colecciones
+                    let usuarioNombre = "John";
+                    if (rol === 'Director') usuarioNombre = "Juan Luis";
+
+                    // Inyección dinámica de la plantilla de saludo en la barra de navegación (Aviso de Ingreso Exitoso)
                     authSection.innerHTML = `
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <span style="color: #fff; font-size: 0.85rem; font-weight: 600; background: rgba(229,107,111,0.2); padding: 5px 12px; border-radius: 20px; border: 1px dashed var(--rosa-principal);">
-                                <i class="fa-solid fa-user-shield"></i> ${rolSimulado}
-                            </span>
-                            <button id="btn-logout" class="btn-admin" title="Cerrar Sesión" style="border:none; cursor:pointer;">
+                        <div class="user-nav-profile-container">
+                            <div class="user-nav-avatar">
+                                ${usuarioNombre.charAt(0).toUpperCase()}
+                            </div>
+                            <div class="user-nav-info">
+                                <span class="user-nav-name">¡Hola, ${usuarioNombre}!</span>
+                                <span class="user-nav-role">${rol}</span>
+                            </div>
+                            <button id="btn-logout" class="user-nav-logout-btn" title="Cerrar Sesión">
                                 <i class="fa-solid fa-right-from-bracket"></i>
                             </button>
                         </div>
                     `;
 
-                    // Habilita panel de edición dinámico únicamente a Soporte TI
-                    if (rolSimulado === "Soporte TI") {
-                        adminPanel.classList.remove('hidden');
+                    // Control estricto del panel flotante según el Rol de Soporte TI
+                    if (rol === "Soporte TI") {
+                        adminFloatingPanel.classList.remove('hidden');
+                    } else {
+                        adminFloatingPanel.classList.add('hidden');
                     }
+
+                    // Cerrar el modal automáticamente
+                    modal.style.display = 'none';
                 });
             }
 
-            // Gestión del botón logout
-            authSection.addEventListener('click', (e) => {
-                const logoutBtn = e.target.closest('#btn-logout');
-                if (logoutBtn) {
-                    e.preventDefault();
-                    location.reload(); // Recarga la página para restaurar el estado original de la barra
-                }
-            });
+            // ESCUCHA DEL BOTÓN DE LOGOUT DINÁMICO
+            if (authSection) {
+                authSection.addEventListener('click', (e) => {
+                    const logoutBtn = e.target.closest('#btn-logout');
+                    if (logoutBtn) {
+                        e.preventDefault();
+                        // Restablecer Navbar al estado original sin autenticar
+                        authSection.innerHTML = `
+                            <a id="btn-login-modal" class="btn-admin" title="Portal de Acceso">
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                            </a>
+                        `;
+                        // Ocultar panel de edición si existía
+                        adminFloatingPanel.classList.add('hidden');
+                    }
+                });
+            }
         });
     </script>
 </body>
