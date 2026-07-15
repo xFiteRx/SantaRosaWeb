@@ -7,68 +7,49 @@
     <link rel="stylesheet" href="interno.css">
 </head>
 <body>
-
 <header>
-    <div class="header-contenedor">
-        <div class="logo">
-            <a href="../index.html">I.E. Santa Rosa de Santo Domingo</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="primaria.html">Primaria</a></li>
-                <li><a href="secundaria.html">Secundaria</a></li>
-                <li><a href="documentos.html">Documentos</a></li>
-                <li><a href="ubicacion.html">Ubicación</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+        </header>
 
     <main class="contenedor-principal">
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar documentos por nombre o descripción...">
+        </div>
 
-        <section class="nosotros-bloque">
-            <h2>Misión y Visión</h2>
-            <div class="historia-grid">
-                <div class="historia-tarjeta">
-                    <strong>Nuestra Misión</strong>
-                    <p>Brindar una educación integral y de calidad a nuestros estudiantes, promoviendo el desarrollo de competencias, valores éticos y capacidades creativas, dentro de un clima escolar inclusivo, democrático y respetuoso de la diversidad local.</p>
-                </div>
-                <div class="historia-tarjeta">
-                    <strong>Nuestra Visión</strong>
-                    <p>Ser reconocidos al 2028 como una institución líder a nivel regional en el desarrollo de la innovación pedagógica y tecnológica, formando ciudadanos conscientes de su entorno, comprometidos con el progreso de Santo Domingo.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="nosotros-bloque">
-            <h2>Nuestra Reseña Histórica</h2>
-            <p>La Institución Educativa Santa Rosa de Santo Domingo nació bajo el fervor y necesidad de la población local por contar con un centro de formación científica y humanista sólido. Fundada en las faldas de la sierra, ha sido cuna de ilustres profesionales.</p>
-            <div class="historia-grid" style="margin-top: 15px;">
-                <div class="historia-tarjeta">
-                    <strong>Fundación y Primeros Pasos:</strong>
-                    <p>Se inició con una infraestructura precaria pero un enorme espíritu de superación por parte de sus primeros directores y educadores.</p>
-                </div>
-                <div class="historia-tarjeta">
-                    <strong>Evolución y Consolidación:</strong>
-                    <p>A lo largo de las décadas, gracias al esfuerzo conjunto, la institución fue creciendo en infraestructura y prestigio, adaptando sus aulas a las sucesivas transformaciones pedagógicas del país.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="nosotros-bloque">
-            <h2>Organigrama Estructural</h2>
-            <ul class="lista-estilizada">
-                <li><strong>Órgano de Dirección:</strong> Dirección del Plantel.</li>
-                <li><strong>Órgano de Asesoría:</strong> Consejo Educativo Institucional (CONEI).</li>
-                <li><strong>Órgano de Línea:</strong> Personal Docente y Profesores de Innovación Pedagógica (AIP).</li>
-                <li><strong>Órgano de Apoyo:</strong> Personal Administrativo, de Servicios y Auxiliares.</li>
-                <li><strong>Órgano de Participación:</strong> Asociación de Padres de Familia (APAFA) y Municipio Escolar.</li>
-            </ul>
-        </section>
+        <div class="table-responsive">
+            <table class="tabla-documentos">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Descripción</th>
+                        <th>Tipo</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="documentTableBody">
+                    <tr>
+                        <td class="col-nombre"><b>Reglamento Interno (RI) 2026</b></td>
+                        <td class="col-descripcion">Normas de convivencia y lineamientos institucionales para toda la comunidad educativa.</td>
+                        <td class="col-tipo">PDF</td>
+                        <td class="col-accion">
+                            <a href="../DOCUMENTOS/RI_2026.pdf" target="_blank" class="btn-ver">Ver</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-nombre"><b>Cronograma de Actividades</b></td>
+                        <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
+                        <td class="col-tipo">PDF</td>
+                        <td class="col-accion">
+                            <a href="../DOCUMENTOS/Cronograma_2026.pdf" target="_blank" class="btn-ver">Ver</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </main>
 
     <script src="interno.js"></script>
+    
 </body>
 </html>
