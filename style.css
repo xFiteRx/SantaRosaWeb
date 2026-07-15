@@ -1,0 +1,60 @@
+/* Estilos generales de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #1a365d;
+}
+
+select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+select {
+    border: 1px solid #cbd5e1;
+}
+
+button {
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #2b6cb0;
+}
+
+/* Clases para controlar los paneles ocultos y colores */
+.panel {
+    display: none; /* Oculta el panel por defecto */
+    margin-top: 20px;
+    padding: 15px;
+    border-left: 6px solid;
+    border-radius: 4px;
+    background-color: #f8fafc;
+}
+
+.panel-rojo { border-left-color: #e53e3e; }
+.panel-amarillo { border-left-color: #dd6b20; }
+.panel-verde { border-left-color: #38a169; }
+.panel-morado { border-left-color: #805ad5; }
