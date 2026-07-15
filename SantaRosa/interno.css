@@ -1,0 +1,383 @@
+/* ===================================================
+   1. ESTILOS GLOBALES, RESETEO Y SEGURIDAD CRÍTICA
+   =================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #fff5f6; /* Fondo sutil con matiz rosado muy limpio */
+    color: #1e293b; /* Texto pizarra oscuro para alta legibilidad */
+    line-height: 1.6;
+}
+
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===================================================
+   2. BARRA DE NAVEGACIÓN (ESTILO UNIFICADO NEGRO + ROSA)
+   =================================================== */
+header {
+    background-color: #111111; /* Negro profundo elegante */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 3px solid #ff6b8b; /* Línea de acento rosada */
+}
+
+.nav-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo-zona {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    height: 48px;
+    width: auto;
+}
+
+.logo-texto h1 {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.logo-texto p {
+    color: #ff6b8b;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.btn-volver {
+    background-color: #ff6b8b;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 107, 139, 0.3);
+}
+
+.btn-volver:hover {
+    background-color: #e04d6d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 139, 0.4);
+}
+
+/* ===================================================
+   3. BLOQUES COMUNES DE CONTENIDO (SOBRE NOSOTROS / UBICACIÓN)
+   =================================================== */
+.nosotros-bloque {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(255, 107, 139, 0.1);
+}
+
+.nosotros-bloque h2 {
+    color: #0f172a;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    border-left: 5px solid #ff6b8b;
+    padding-left: 15px;
+}
+
+.historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .historia-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.historia-tarjeta {
+    background: #fff9fa;
+    border: 1px solid #ffe3e7;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.historia-tarjeta strong {
+    display: block;
+    color: #e04d6d;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.lista-estilizada {
+    list-style: none;
+}
+
+.lista-estilizada li {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.lista-estilizada li:last-child {
+    border-bottom: none;
+}
+
+/* Tablas estilizadas (Ubicación e Información) */
+.tabla-info {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #ffffff;
+}
+
+.tabla-info td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.tabla-info tr:hover {
+    background-color: #fff9fa;
+}
+
+.mapa-incrustado {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid #ff6b8b;
+    margin-top: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.mapa-incrustado iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+}
+
+/* ===================================================
+   4. SECCIÓN PLATAFORMAS (PRIMARIA / SECUNDARIA)
+   =================================================== */
+.plataformas-seccion {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 30px;
+    border: 1px solid rgba(255, 107, 139, 0.1);
+}
+
+.plataformas-seccion h2 {
+    color: #0f172a;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    border-left: 5px solid #ff6b8b;
+    padding-left: 15px;
+}
+
+.plataformas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.plataforma-card {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.plataforma-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(255, 107, 139, 0.15);
+    border-color: #ff6b8b;
+}
+
+.plataforma-portada {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.plataforma-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.plataforma-info h3 {
+    font-size: 1.2rem;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.plataforma-info p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.plataforma-btn {
+    display: block;
+    width: 100%;
+    background-color: #002244;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background-color 0.2s;
+}
+
+.plataforma-btn:hover {
+    background-color: #ff6b8b;
+}
+
+/* Formularios de Juegos (Selector de Grado y Sección) */
+.juego-formulario {
+    background-color: #fff9fa;
+    border: 1px solid #ffe3e7;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-grupo {
+    display: flex;
+    gap: 10px;
+}
+
+.selector-aula {
+    flex: 1;
+    padding: 8px;
+    border: 1.5px solid #ffccd5;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 0.85rem;
+    color: #1e293b;
+    outline: none;
+    cursor: pointer;
+}
+
+.selector-aula:focus {
+    border-color: #ff6b8b;
+}
+
+/* ===================================================
+   5. SECCIÓN DOCUMENTOS (TABLA DE BUSQUEDA)
+   =================================================== */
+.buscador-contenedor {
+    margin-bottom: 25px;
+}
+
+.buscador-input {
+    width: 100%;
+    padding: 14px 20px;
+    border: 2px solid #ffccd5;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    color: #1e293b;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    transition: all 0.3s;
+}
+
+.buscador-input:focus {
+    border-color: #ff6b8b;
+    box-shadow: 0 4px 15px rgba(255, 107, 139, 0.15);
+}
+
+.tabla-contenedor {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    border: 1px solid rgba(255, 107, 139, 0.1);
+}
+
+.tabla-documentos {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla-documentos th {
+    background-color: #002244;
+    color: #ffffff;
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.tabla-documentos td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+.tabla-documentos tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-documentos tr:hover {
+    background-color: #fff9fa;
+}
+
+.col-nombre { font-weight: 600; width: 35%; }
+.col-descripcion { color: #64748b; width: 45%; }
+.col-tipo { font-weight: bold; color: #ff6b8b; width: 10%; }
+.col-accion { text-align: center; width: 10%; }
+
+.btn-ver {
+    display: inline-block;
+    background-color: #002244;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 15px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-ver:hover {
+    background-color: #ff6b8b;
+}
