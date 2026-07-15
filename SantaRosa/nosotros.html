@@ -7,49 +7,176 @@
     <link rel="stylesheet" href="interno.css">
 </head>
 <body>
-<header>
-        </header>
+
+    <header>
+        <div class="nav-container">
+            <a href="../index.html" class="brand-link" title="Ir al Portal Principal">
+                <img src="../IMG/Logo.png" alt="Logo I.E. Santa Rosa" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">I.E. Santa Rosa</span>
+                    <span class="brand-subtitle">Santo Domingo - Huarmey</span>
+                </div>
+            </a>
+
+            <nav>
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-dropdown-btn">MENÚ SECCIONES</label>
+                
+                <ul class="dropdown-content">
+                    <li><a href="#director">Director</a></li>
+                    <li><a href="#presentacion">Presentación Institucional</a></li>
+                    <li><a href="#mision-vision">Misión y Visión</a></li>
+                    <li><a href="#filosofia-valores">Filosofía y Valores</a></li>
+                    <li><a href="#resena-historica">Reseña Histórica</a></li>
+                    <li><a href="#organigrama">Organigrama Estructural</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main class="contenedor-principal">
-        
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Buscar documentos por nombre o descripción...">
+
+        <div class="nosotros-hero">
+            <h1>Nosotros</h1>
+            <p>I.E. Santa Rosa de Santo Domingo — Huarmey</p>
         </div>
 
-        <div class="table-responsive">
-            <table class="tabla-documentos">
+        <section id="director" class="nosotros-bloque">
+            <h2>Director</h2>
+            <div class="tarjeta-direccion">
+                <div class="bloque-con-imagen">
+                    <div class="columna-texto">
+                        <h3>Prof. Juan L. Orellano Brito</h3>
+                        <p class="cargo-subtitulo">Director de la Institución</p>
+                        <p>Máxima autoridad responsable de la gestión pedagógica, institucional y administrativa, orientada a asegurar la calidad del servicio educativo y el logro de los aprendizajes de los estudiantes de acuerdo a los lineamientos oficiales.</p>
+                    </div>
+                    <div class="columna-imagen">
+                        <div class="contenedor-foto-marco">
+                            <img src="../IMG/Director.jpg" alt="Prof. Juan L. Orellano Brito">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="presentacion" class="nosotros-bloque">
+            <h2>Presentación Institucional</h2>
+            <div class="bloque-con-imagen">
+                <div class="columna-imagen">
+                    <div class="contenedor-foto-marco">
+                        <img src="../IMG/FRONTIS.jpg" alt="Fotografía Frontal del Colegio">
+                    </div>
+                </div>
+                <div class="columna-texto">
+                    <p>La <strong>I.E. Santa Rosa de Santo Domingo</strong> es una institución educativa pública ubicada en el centro poblado de Santo Domingo, distrito y provincia de Huarmey, en la región Áncash. Atiende los niveles de <strong>Primaria y Secundaria</strong> y depende administrativamente de la <strong>UGEL Huarmey</strong> y de la Dirección Regional de Educación de Áncash (DRE Áncash).</p>
+                    <p>Al ser una de las principales instituciones públicas del centro poblado de Santo Domingo, cumple un papel de vital importancia en la educación básica regular de la zona, atendiendo con dedicación a estudiantes de la comunidad y sectores cercanos. Su carácter mixto y la oferta de ambos niveles garantizan una valiosa continuidad educativa dentro de la misma institución.</p>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #f0e2e4; margin: 25px 0;">
+
+            <h3>Información General</h3>
+            <ul class="lista-estilizada" style="margin-bottom: 25px;">
+                <li><strong>Ubicación:</strong> Calle 31 de Mayo s/n, Centro Poblado Santo Domingo, Huarmey, Áncash.</li>
+                <li><strong>Gestión:</strong> Pública de gestión directa.</li>
+                <li><strong>Modalidad:</strong> Escolarizada.</li>
+                <li><strong>Género:</strong> Mixto.</li>
+                <li><strong>Nivel Primaria:</strong> Turno mañana.</li>
+                <li><strong>Nivel Secundaria:</strong> Turno tarde.</li>
+            </ul>
+
+            <h3>Datos de Matrícula y Personal</h3>
+            <table class="tabla-datos">
                 <thead>
                     <tr>
-                        <th>Documento</th>
-                        <th>Descripción</th>
-                        <th>Tipo</th>
-                        <th>Acción</th>
+                        <th>Nivel</th>
+                        <th>Estudiantes aprox.</th>
+                        <th>Docentes aprox.</th>
                     </tr>
                 </thead>
-                <tbody id="documentTableBody">
+                <tbody>
                     <tr>
-                        <td class="col-nombre"><b>Reglamento Interno (RI) 2026</b></td>
-                        <td class="col-descripcion">Normas de convivencia y lineamientos institucionales para toda la comunidad educativa.</td>
-                        <td class="col-tipo">PDF</td>
-                        <td class="col-accion">
-                            <a href="../DOCUMENTOS/RI_2026.pdf" target="_blank" class="btn-ver">Ver</a>
-                        </td>
+                        <td><strong>Primaria</strong></td>
+                        <td>182</td>
+                        <td>9</td>
                     </tr>
                     <tr>
-                        <td class="col-nombre"><b>Cronograma de Actividades</b></td>
-                        <td class="col-descripcion">Fechas importantes de actividades escolares.</td>
-                        <td class="col-tipo">PDF</td>
-                        <td class="col-accion">
-                            <a href="../DOCUMENTOS/Cronograma_2026.pdf" target="_blank" class="btn-ver">Ver</a>
-                        </td>
+                        <td><strong>Secundaria</strong></td>
+                        <td>127</td>
+                        <td>11</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+            <span class="nota-referencial">* Según registros educativos publicados. Estos valores pueden variar cada año escolar.</span>
+
+            <h3>Aspectos Institucionales</h3>
+            <p>La institución fue sólidamente incorporada al registro de servicios educativos en el <strong>año 2001</strong> y se encuentra en estado activo permanente. Su código de local educativo oficial es <strong>025982</strong>.</p>
+        </section>
+
+        <section id="mision-vision" class="nosotros-bloque">
+            <h2>Horizontes Institucionales</h2>
+            <div class="bloques-contenedor">
+                <div class="columna-50">
+                    <h3>Misión</h3>
+                    <p>Brindar una educación integral de calidad bajo el marco del Currículo Nacional, que fomente la excelencia académica, la práctica de valores cívico-morales y la apropiación responsable del ecosistema digital, logrando que cada estudiante alcance su máximo potencial.</p>
+                </div>
+                <div class="columna-50">
+                    <h3>Visión</h3>
+                    <p>Ser reconocidos a nivel regional como una institución educativa líder en innovación tecnológica y pedagógica, formando ciudadanos competentes, críticos, éticos y capaces de contribuir activamente al desarrollo sostenible de Huarmey.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="filosofia-valores" class="nosotros-bloque">
+            <h2>Filosofía y Valores</h2>
+            <p>Nuestra propuesta educativa se fundamenta en el desarrollo humano, la búsqueda de la verdad y el compromiso social. Guiamos nuestro diario accionar bajo cuatro valores pilares:</p>
+            <div class="valores-grid">
+                <div class="valor-tarjeta">
+                    <h3>Responsabilidad</h3>
+                    <p>Asumimos las consecuencias de nuestros actos y cumplimos con excelencia nuestros deberes escolares y comunitarios.</p>
+                </div>
+                <div class="valor-tarjeta">
+                    <h3>Respeto</h3>
+                    <p>Valoramos la dignidad de cada persona, la diversidad y promovemos una convivencia escolar armoniosa y democrática.</p>
+                </div>
+                <div class="valor-tarjeta">
+                    <h3>Innovación</h3>
+                    <p>Impulsamos el pensamiento creativo, la investigación científica y el uso constructivo de la tecnología en las aulas.</p>
+                </div>
+                <div class="valor-tarjeta">
+                    <h3>Solidaridad</h3>
+                    <p>Cultivamos la empatía y la ayuda mutua, respondiendo con sensibilidad a las necesidades de nuestro entorno en Santo Domingo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resena-historica" class="nosotros-bloque">
+            <h2>Reseña Histórica</h2>
+            <div class="linea-tiempo">
+                <div class="hito">
+                    <strong>1967 — El Nacimiento de una Identidad:</strong>
+                    <p>La historia de nuestra querida institución educativa comienza a escribirse en el año 1967, fecha que tomamos con orgullo como referencia de nuestro aniversario institucional. Fundada para dar respuesta a la creciente necesidad educativa de las familias de Santo Domingo en Huarmey.</p>
+                </div>
+                <div class="hito">
+                    <strong>Evolución y Consolidación:</strong>
+                    <p>A lo largo de las décadas, gracias al esfuerzo conjunto de directivos, docentes y padres de familia, la institución fue creciendo en infraestructura y prestigio, adaptando sus aulas a las sucesivas transformaciones pedagógicas del país.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="organigrama" class="nosotros-bloque">
+            <h2>Organigrama Estructural</h2>
+            <ul class="lista-estilizada">
+                <li><strong>Órgano de Dirección:</strong> Dirección del Plantel.</li>
+                <li><strong>Órgano de Asesoría:</strong> Consejo Educativo Institucional (CONEI).</li>
+                <li><strong>Órgano de Línea:</strong> Personal Docente y Profesores de Innovación Pedagógica (AIP).</li>
+                <li><strong>Órgano de Apoyo:</strong> Personal Administrativo, de Servicios y Auxiliares.</li>
+                <li><strong>Órgano de Participación:</strong> Asociación de Padres de Familia (APAFA) y Municipio Escolar.</li>
+            </ul>
+        </section>
 
     </main>
 
     <script src="interno.js"></script>
-    
 </body>
 </html>
