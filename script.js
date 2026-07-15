@@ -1,4 +1,4 @@
-        // SEGURIDAD: Deshabilitar Clic Derecho
+ // SEGURIDAD: Deshabilitar Clic Derecho
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         }, false);
